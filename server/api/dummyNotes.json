@@ -1,0 +1,9 @@
+[{
+  "id": 1,
+  "title": "Learn React",
+  "body": "I need to build my interface somehow. =\\"
+}, {
+  "id": 2,
+  "title": "Learn MobX",
+  "body": "I need to store my state somewhere."
+}]
