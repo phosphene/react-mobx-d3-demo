@@ -3,11 +3,21 @@
 - CSSNext and modules;
 - Hot module reloading;
 - Build server bundle for production;
+- Karma webpack jasmine testing with enzyme
+- Mobx for state management
+- React
+- D3
 
 ### To start
 
 - `npm i`
 - `npm start` — development server on port 8080;
+
+
+### test
+
+- `npm test` - PhantomJS jasmine acceptance testing
+
 
 ### Preparing for production
 - `npm run prod` — build all bundles and start in production mode;
@@ -20,6 +30,9 @@
 - `npm run build:server` — build server bundle;
 - `npm run prod` — alias for build:all and start:prod
 - `npm run clear:builds` — delete all generated bundles;
+- `npm test` — single test run
+- `npm test:watch` — watch for changes an rerun tests on file change
+
 
 ### Structure
 ```
