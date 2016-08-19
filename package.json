@@ -77,12 +77,6 @@
     "mocha": "^2.5.3",
     "nodemon": "^1.9.2",
     "phantomjs-prebuilt": "^2.1.8",
-    "postcss": "^5.1.0",
-    "postcss-cssnext": "^2.7.0",
-    "postcss-focus": "^1.0.0",
-    "postcss-loader": "^0.9.1",
-    "postcss-reporter": "^1.4.1",
-    "precss": "^1.4.0",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.3.0",
     "react-hot-loader": "^3.0.0-beta.1",
@@ -102,7 +96,13 @@
     "react-router": "^2.6.0",
     "webpack-merge": "^0.14.1",
     "webpack": "^1.13.1",
-    "extract-text-webpack-plugin": "^1.0.1"
+    "extract-text-webpack-plugin": "^1.0.1",
+    "postcss": "^5.1.0",
+    "postcss-cssnext": "^2.7.0",
+    "postcss-focus": "^1.0.0",
+    "postcss-loader": "^0.9.1",
+    "postcss-reporter": "^1.4.1",
+    "precss": "^1.4.0"
   },
   "babelConfig": {
     "server": {
