@@ -102,8 +102,7 @@
         "css-modules-require-hook": "^4.0.1",
         "precss": "^1.4.0",
         "style-loader": "^0.13.1",
-        "url-loader": "^0.5.7",
-
+        "url-loader": "^0.5.7"
     },
     "babelConfig": {
         "server": {
