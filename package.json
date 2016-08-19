@@ -103,7 +103,7 @@
     "react-dom": "^15.2.1",
     "react-router": "^2.6.0",
     "webpack-merge": "^0.14.1",
-    "webpack": "^1.13.1",
+    "webpack": "^1.13.1"
   },
   "babelConfig": {
     "server": {
