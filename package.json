@@ -89,8 +89,6 @@
     "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1",
-    "extract-text-webpack-plugin": "^1.0.1",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
@@ -104,7 +102,7 @@
     "react-router": "^2.6.0",
     "webpack-merge": "^0.14.1",
     "webpack": "^1.13.1",
-
+    "extract-text-webpack-plugin": "^1.0.1"
   },
   "babelConfig": {
     "server": {
