@@ -22,7 +22,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <div>Welcome to a basic sample app with an arbitrary timer on the index view. The header nav has links to visualizations</div>
+        <div>Welcome to a basic sample app with an arbitrary timer. The header nav has links to visualizations</div>
         <h1>
           <span className={styles.label}>Timer:</span>
           <span className={styles.counter}> {this.store.counter}</span>
