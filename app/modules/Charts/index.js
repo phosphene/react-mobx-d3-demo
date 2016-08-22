@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import { observer } from 'mobx-react';
-import BubbleWrap from './components/BubbleWrap';
+//import BubbleWrap from './components/BubbleWrap';
 
 //@observer(["noteStore"])
 export default class Charts extends Component {
@@ -10,7 +10,7 @@ export default class Charts extends Component {
 
   render() {
     return (
-      <BubbleWrap />
+
     );
   }
 }

@@ -9,7 +9,8 @@ export default function Header() {
         <nav className={styles.menu}>
           <ul>
             <li><IndexLink to="/">Home</IndexLink></li>
-            <li><Link to="charts">Bubble Chart</Link></li>
+            <li><Link to="bubble">Cluster Bubble Chart</Link></li>
+            <li><Link to="dash">Dashboard</Link></li>
           </ul>
         </nav>
       </div>
