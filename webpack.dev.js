@@ -39,6 +39,10 @@ module.exports = {
     }, {
       test: /\.(ttf|eot|woff2?|otf)$/,
       loader: 'url?name=public/fonts/[name].[ext]&limit=10000'
+    }, {
+      // make all files ending in .json use the `json-loader`
+      test: /\.json$/,
+      loader: 'json-loader'
     }]
   },
   plugins: [

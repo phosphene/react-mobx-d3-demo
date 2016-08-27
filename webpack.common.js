@@ -41,16 +41,21 @@ module.exports = {
       loader: 'babel',
       query: babelConfig.client
     },
-     {
-      test: /\.css$/,
-      loader: 'style!css?modules&localIdentName=[folder]__[local]--[hash:base64:5]&camelCase&importLoaders=1!postcss'
-    }, {
-      test: /\.(png|jpe?g|gif|svg)$/,
-      loader: 'url?name=public/images/[name].[ext]&limit=10000'
-    }, {
-      test: /\.(ttf|eot|woff2?|otf)$/,
-      loader: 'url?name=public/fonts/[name].[ext]&limit=10000'
-    }]
+              {
+                test: /\.css$/,
+                loader: 'style!css?modules&localIdentName=[folder]__[local]--[hash:base64:5]&camelCase&importLoaders=1!postcss'
+              }, {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                loader: 'url?name=public/images/[name].[ext]&limit=10000'
+              }, {
+                test: /\.(ttf|eot|woff2?|otf)$/,
+                loader: 'url?name=public/fonts/[name].[ext]&limit=10000'
+              },
+              {
+                // make all files ending in .json use the `json-loader`
+                test: /\.json$/,
+                loader: 'json-loader'
+              }]
   },
   externals: {
     cheerio: 'window',

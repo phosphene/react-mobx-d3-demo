@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import { observer } from 'mobx-react';
 //import DashWrap from './components/DashWrap';
-import BarWrap from './components/BarWrap';
+import CrossWrap from './components/CrossWrap';
 /* This file can serve as the index for this level of component namespace
  * However, it is currently not being used and is redundant
  * It is here as a possible design choice*/
@@ -13,7 +13,7 @@ export default class Dashboards extends Component {
 
   render() {
     return (
-     <BarWrap/>
+     <CrossWrap/>
     );
   }
 }
