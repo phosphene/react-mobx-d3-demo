@@ -8,10 +8,12 @@
 - React
 - D3
 
+This is a very alpha demo of D3 to React and ES6, informed by testing. Best practices and refactoring will be added in a phased manner.
+
 ### To start
 
 - `npm i`
-- `npm start` — development server on port 8080;
+- `npm start:dev` — development server on port 8080;
 
 
 ### test
