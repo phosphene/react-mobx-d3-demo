@@ -1,6 +1,5 @@
 import React, { Component, cloneElement } from 'react';
 import { useStrict } from 'mobx';
-useStrict();
 import { Provider } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import Header from 'components/Header';

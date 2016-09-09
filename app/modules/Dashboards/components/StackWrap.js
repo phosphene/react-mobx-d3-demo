@@ -1,4 +1,5 @@
 import BarChartStack from './BarChartStack';
+import StackedBarExample from './StackedBarExample';
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 
@@ -20,7 +21,7 @@ export default class StackWrap extends React.Component {
   }
 
   componentDidMount() {
-    this.chart = new BarChartStack();
+    this.chart = new StackedBarExample();
     this.chart.render();
 
   }

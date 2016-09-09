@@ -26,7 +26,7 @@ export default class ClusterBubbleD3 {
         z = d3.scaleOrdinal(d3.schemeCategory20),
         clusters = new Array(m);
 
-    let svg = d3.select('body')
+    let svg = d3.select('#bubble')
                 .append('svg')
                 .attr('height', height)
                 .attr('width', width)
