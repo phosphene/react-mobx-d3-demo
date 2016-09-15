@@ -168,5 +168,31 @@ export default class StackedBarExample {
 
 
 
+buildBrushTwo(){
+  let brush = d3.brushX()
+                .extent([[0, 0], [width, height]])
+                .on("end", brushended);
+
+
+}
+
+
+brushEnded(brush) {
+    if (!d3.event.sourceEvent) return; // Only transition after input.
+    if (!d3.event.selection) return; // Ignore empty selections.
+    var domain0 = d3.event.selection.map(x.invert),
+        domain1 = domain0.map(d3.timeDay.round);
+
+    // If empty when rounded, use floor & ceil instead.
+    if (domain1[0] >= domain1[1]) {
+      domain1[0] = d3.timeDay.floor(domain0[0]);
+      domain1[1] = d3.timeDay.ceil(domain0[1]);
+    }
+
+    d3.select(this)
+      .transition()
+      .call(brush.move, domain1.map(x));
+  }
+
 
 }
