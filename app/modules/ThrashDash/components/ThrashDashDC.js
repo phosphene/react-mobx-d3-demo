@@ -30,7 +30,7 @@ export default class ThrashDashDC {
         const monthChart = this.monthChart;
         const dayChart = this.dayChart;
 
-        d3.json('data/thrashtown.json', (error, data) => {
+      d3.json('data/thrashtown.json', (error, data) => {
             const surfData = data;
 
             const fullDateFormat = d3.time.format("%a, %d %b %Y %X %Z");
