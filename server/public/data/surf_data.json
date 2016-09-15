@@ -1,0 +1,2312 @@
+[
+    {
+        "_id": "577c568a1863120300309c76",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-07-05T00:51:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a54",
+            "default": false,
+            "lat": 36.961243,
+            "long": -122.117329,
+            "name": "3 mile",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a54",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "577c570b1863120300309c77",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-07-03T00:53:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a54",
+            "default": false,
+            "lat": 36.961243,
+            "long": -122.117329,
+            "name": "3 mile",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a54",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "577745f2c01a060300ced765",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 2,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 1,
+        "otherFriends": 0,
+        "sessionDate": "2016-07-02T04:39:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a54",
+            "default": false,
+            "lat": 36.961243,
+            "long": -122.117329,
+            "name": "3 mile",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a54",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "5775d8913d6498030004acd9",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-07-01T02:40:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a55",
+            "default": false,
+            "lat": 36.965101,
+            "long": -122.123916,
+            "name": "4 mile",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a55",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "5775d9293d6498030004acda",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 1,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-30T02:00:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a51",
+            "default": false,
+            "lat": 36.952087,
+            "long": -122.023859,
+            "name": "Steamer Lane",
+            "notes": null,
+            "private": false,
+            "region": "Santa Cruz"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a51",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "5775da593d6498030004acdc",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 4,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-28T02:00:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a4e",
+            "default": false,
+            "lat": 36.955276,
+            "long": -121.971138,
+            "name": "Pleasure Point",
+            "notes": null,
+            "private": false,
+            "region": "Santa Cruz"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a4e",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "5775d9c33d6498030004acdb",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 4,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-27T02:00:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a4e",
+            "default": false,
+            "lat": 36.955276,
+            "long": -121.971138,
+            "name": "Pleasure Point",
+            "notes": null,
+            "private": false,
+            "region": "Santa Cruz"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a4e",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "5775dae03d6498030004acdd",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-24T02:00:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a51",
+            "default": false,
+            "lat": 36.952087,
+            "long": -122.023859,
+            "name": "Steamer Lane",
+            "notes": null,
+            "private": false,
+            "region": "Santa Cruz"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a51",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "5775dc723d6498030004acde",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-23T21:00:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a51",
+            "default": false,
+            "lat": 36.952087,
+            "long": -122.023859,
+            "name": "Steamer Lane",
+            "notes": null,
+            "private": false,
+            "region": "Santa Cruz"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a51",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "5775dcf43d6498030004acdf",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-22T21:00:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a51",
+            "default": false,
+            "lat": 36.952087,
+            "long": -122.023859,
+            "name": "Steamer Lane",
+            "notes": null,
+            "private": false,
+            "region": "Santa Cruz"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a51",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "577c58c11863120300309c7a",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-18T01:01:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a54",
+            "default": false,
+            "lat": 36.961243,
+            "long": -122.117329,
+            "name": "3 mile",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a54",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "577c586d1863120300309c79",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-16T22:00:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a54",
+            "default": false,
+            "lat": 36.961243,
+            "long": -122.117329,
+            "name": "3 mile",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a54",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "577c57c81863120300309c78",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-16T00:56:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a55",
+            "default": false,
+            "lat": 36.965101,
+            "long": -122.123916,
+            "name": "4 mile",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a55",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "577c59d81863120300309c7c",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-06T01:06:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "577c5a911863120300309c7e",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-05T01:09:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a54",
+            "default": false,
+            "lat": 36.961243,
+            "long": -122.117329,
+            "name": "3 mile",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a54",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "577c5a411863120300309c7d",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-03T22:00:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a54",
+            "default": false,
+            "lat": 36.961243,
+            "long": -122.117329,
+            "name": "3 mile",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a54",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "577c5b151863120300309c7f",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-06-03T01:10:00.000Z",
+        "sessionHours": 1,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a58",
+            "default": false,
+            "lat": 37.096299,
+            "long": -122.281995,
+            "name": "Waddell / Big Creek",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a58",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "570e7655f4995903005e2727",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-13T16:37:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "570e75d6f4995903005e2726",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-12T16:36:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "570c6f53b7a5400300204840",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-12T03:42:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "570c6f53b7a5400300204841",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-12T03:42:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "5709d91ab7d5930300ef551b",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-10T04:32:00.000Z",
+        "sessionHours": 3,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "5709d746b7d5930300ef5519",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-09T04:29:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "5709d746b7d5930300ef551a",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-09T04:29:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "5709d633b7d5930300ef5518",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-08T04:20:00.000Z",
+        "sessionHours": 3,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "5702e56ee835410300a82f37",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 2,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-04T21:59:00.000Z",
+        "sessionHours": 3,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "5702e3b3e835410300a82f36",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-03T21:52:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "5701545ff325190300ee22ba",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 2,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 1,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-03T17:26:00.000Z",
+        "sessionHours": 3,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "570026c9f50c960300f89241",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 5,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-02T20:05:00.000Z",
+        "sessionHours": 4,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56ff25c4f1702603006809d6",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 5,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-04-02T01:46:00.000Z",
+        "sessionHours": 3,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 5
+    },
+    {
+        "_id": "56ff26abf1702603006809d7",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-03-31T01:54:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "56f6356f178e2503002b1e0e",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 2,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-03-25T07:05:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "56f6347f178e2503002b1e0d",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-03-25T07:03:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "56f63418178e2503002b1e0c",
+        "board": {
+            "_id": "56f632a7178e2503002b1e0b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "js monsta 5 fin thumb",
+            "size": "6'5\""
+        },
+        "board_id": "56f632a7178e2503002b1e0b",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-03-24T06:56:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a51",
+            "default": false,
+            "lat": 36.952087,
+            "long": -122.023859,
+            "name": "Steamer Lane",
+            "notes": null,
+            "private": false,
+            "region": "Santa Cruz"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a51",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56f635f8178e2503002b1e0f",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 1,
+        "otherFriends": 0,
+        "sessionDate": "2016-03-21T07:09:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 1
+    },
+    {
+        "_id": "56eb1e8b7db8cc03004d31b7",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-03-17T21:13:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56e8b8acb557eb0300f9f820",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-03-15T01:35:00.000Z",
+        "sessionHours": 3,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "56e8b954b557eb0300f9f821",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-03-13T02:37:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "56e8ba11b557eb0300f9f823",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-03-11T02:41:00.000Z",
+        "sessionHours": 3,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "56ff30c7f1702603006809df",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 2,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-02-19T03:37:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56ff302ff1702603006809de",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 2,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-02-16T03:35:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56f64278178e2503002b1e21",
+        "board": {
+            "_id": "56f638c9178e2503002b1e15",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "sled - Hayden",
+            "size": "6'4\""
+        },
+        "board_id": "56f638c9178e2503002b1e15",
+        "crowdedness": 2,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-02-13T09:02:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "56ff2e15f1702603006809dd",
+        "board": {
+            "_id": "56ff2c61f1702603006809dc",
+            "archived": false,
+            "category": "Gun",
+            "default": false,
+            "name": "LINDEN",
+            "size": "8'0\""
+        },
+        "board_id": "56ff2c61f1702603006809dc",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 1,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-02-13T03:22:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "56ff2bb5f1702603006809db",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 4,
+        "otherFriends": 0,
+        "sessionDate": "2016-02-11T03:16:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56ff2b22f1702603006809da",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 4,
+        "otherFriends": 0,
+        "sessionDate": "2016-02-10T03:13:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "56ff2ac5f1702603006809d9",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 4,
+        "otherFriends": 0,
+        "sessionDate": "2016-02-09T03:11:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56ff2a23f1702603006809d8",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 1,
+        "otherFriends": 0,
+        "sessionDate": "2016-02-08T03:09:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "56f642b8178e2503002b1e22",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-02-01T09:04:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "56f64223178e2503002b1e20",
+        "board": {
+            "_id": "56f638c9178e2503002b1e15",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "sled - Hayden",
+            "size": "6'4\""
+        },
+        "board_id": "56f638c9178e2503002b1e15",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-01-30T09:01:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56f641ee178e2503002b1e1f",
+        "board": {
+            "_id": "56f638c9178e2503002b1e15",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "sled - Hayden",
+            "size": "6'4\""
+        },
+        "board_id": "56f638c9178e2503002b1e15",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 1,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2016-01-29T09:01:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a66",
+            "default": false,
+            "lat": 37.78954,
+            "long": -122.499104,
+            "name": "Deadman's",
+            "notes": null,
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a66",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56f63be3178e2503002b1e1e",
+        "board": {
+            "_id": "56f63bb2178e2503002b1e1d",
+            "archived": false,
+            "category": "Step-Up",
+            "default": false,
+            "name": "rusty",
+            "size": "7'0\""
+        },
+        "board_id": "56f63bb2178e2503002b1e1d",
+        "crowdedness": 2,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2016-01-01T08:35:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "56f63ac9178e2503002b1e1b",
+        "board": {
+            "_id": "56f638c9178e2503002b1e15",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "sled - Hayden",
+            "size": "6'4\""
+        },
+        "board_id": "56f638c9178e2503002b1e15",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-31T08:29:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56f63a6f178e2503002b1e1a",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 1,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-30T08:29:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 1
+    },
+    {
+        "_id": "56f63a3b178e2503002b1e19",
+        "board": {
+            "_id": "56f638c9178e2503002b1e15",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "sled - Hayden",
+            "size": "6'4\""
+        },
+        "board_id": "56f638c9178e2503002b1e15",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-29T08:27:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56f639f7178e2503002b1e18",
+        "board": {
+            "_id": "56f638c9178e2503002b1e15",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "sled - Hayden",
+            "size": "6'4\""
+        },
+        "board_id": "56f638c9178e2503002b1e15",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-28T08:26:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "56f639a1178e2503002b1e17",
+        "board": {
+            "_id": "56f638c9178e2503002b1e15",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "sled - Hayden",
+            "size": "6'4\""
+        },
+        "board_id": "56f638c9178e2503002b1e15",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-27T08:24:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56f63919178e2503002b1e16",
+        "board": {
+            "_id": "56f638c9178e2503002b1e15",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "sled - Hayden",
+            "size": "6'4\""
+        },
+        "board_id": "56f638c9178e2503002b1e15",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 3,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-26T08:22:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "56f63886178e2503002b1e14",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-24T08:20:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "56f63746178e2503002b1e12",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-23T08:15:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "56f63787178e2503002b1e13",
+        "board": {
+            "_id": "56e8b848b557eb0300f9f81f",
+            "archived": false,
+            "category": "Shortboard",
+            "default": true,
+            "name": "js monsta 3 thruster squash",
+            "size": "6'4\""
+        },
+        "board_id": "56e8b848b557eb0300f9f81f",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-22T08:16:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "56f6371d178e2503002b1e11",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 4,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-21T08:14:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a43",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "International"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a43",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 2
+    },
+    {
+        "_id": "56f636c9178e2503002b1e10",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 1,
+        "otherFriends": 0,
+        "sessionDate": "2015-12-20T08:13:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a45",
+            "default": false,
+            "lat": null,
+            "long": null,
+            "name": "West Coast - Other",
+            "notes": null,
+            "private": false,
+            "region": "USA"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a45",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 1
+    },
+    {
+        "_id": "554cf9f678532d03004f0076",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 3,
+        "friends": [],
+        "funFactor": 3,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-04-26T17:59:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a58",
+            "default": false,
+            "lat": 37.096299,
+            "long": -122.281995,
+            "name": "Waddell / Big Creek",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a58",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 4
+    },
+    {
+        "_id": "554cfadb78532d03004f0078",
+        "board": {
+            "_id": "554cfa7978532d03004f0077",
+            "archived": true,
+            "category": "Step-Up",
+            "default": false,
+            "name": "stretch",
+            "size": "6'8\""
+        },
+        "board_id": "554cfa7978532d03004f0077",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-04-11T18:03:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a57",
+            "default": false,
+            "lat": 37.040586,
+            "long": -122.232277,
+            "name": "Scotts Creek",
+            "notes": null,
+            "private": false,
+            "region": "SC North County"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a57",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "551deb6f2c1d2c0300f55a28",
+        "board": {
+            "_id": "545d4839c890e802004b8a6b",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "hypto",
+            "size": "6'0\""
+        },
+        "board_id": "545d4839c890e802004b8a6b",
+        "crowdedness": 5,
+        "friends": [],
+        "funFactor": 4,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-03-29T20:00:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a50",
+            "default": false,
+            "lat": 36.954213,
+            "long": -122.045403,
+            "name": "Other",
+            "notes": null,
+            "private": false,
+            "region": "Santa Cruz"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a50",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    },
+    {
+        "_id": "56f63b1a178e2503002b1e1c",
+        "board": {
+            "_id": "56f638c9178e2503002b1e15",
+            "archived": false,
+            "category": "Shortboard",
+            "default": false,
+            "name": "sled - Hayden",
+            "size": "6'4\""
+        },
+        "board_id": "56f638c9178e2503002b1e15",
+        "crowdedness": 1,
+        "friends": [],
+        "funFactor": 2,
+        "hollowness": 2,
+        "otherFriends": 0,
+        "sessionDate": "2015-01-01T08:31:00.000Z",
+        "sessionHours": 2,
+        "surfSpot": {
+            "_id": "545d47dcc890e802004b8a65",
+            "default": true,
+            "lat": 37.77397,
+            "long": -122.516454,
+            "name": "Ocean Beach North",
+            "notes": "lincoln to kelly's",
+            "private": false,
+            "region": "SF"
+        },
+        "surfSpot_id": "545d47dcc890e802004b8a65",
+        "user_id": {
+            "_id": "545d47dcc890e802004b8a42",
+            "name": "jody"
+        },
+        "waveQuality": 3
+    }
+]

@@ -4,14 +4,15 @@ import { Route, IndexRoute } from 'react-router';
 import App from './modules';
 import Timer from './modules/Timer';
 import Notes from './modules/Notes';
-import BubbleWrap from './modules/Charts/components/BubbleWrap';
-import Dashboards from './modules/Dashboards';
-
+import BubbleWrap from './modules/AnimatedBubble/components/BubbleWrap';
+import V4Port from './modules/V4Port';
+import ThrashDash from './modules/ThrashDash';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Timer} />
     <Route path="bubble" component={BubbleWrap} />
-    <Route path="dash" component={Dashboards} />
+    <Route path="v4port" component={V4Port} />
+    <Route path="thrashdash" component={ThrashDash} />
   </Route>
 );
