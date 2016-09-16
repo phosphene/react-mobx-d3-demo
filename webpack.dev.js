@@ -32,7 +32,7 @@ module.exports = {
       query: babelConfig.client
     }, {
       test: /\.css$/,
-      loader: 'style!css?modules&localIdentName=[folder]__[local]--[hash:base64:5]&camelCase&importLoaders=1!postcss'
+      loader: 'style-loader!css-loader'
     }, {
       test: /\.(png|jpe?g|gif|svg)$/,
       loader: 'url?name=public/images/[name].[ext]&limit=10000'
