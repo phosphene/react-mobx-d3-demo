@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observable, action } from 'mobx';
 import { observer } from 'mobx-react';
-import styles from '../styles.css';
+
 
 @observer
 export default class Note extends Component {
@@ -41,31 +41,8 @@ export default class Note extends Component {
   render() {
     let { title, body } = this.props.note;
     return (
-      <article className={styles.note}>
-        <section className={styles.controlButtons}>
-          <button className={styles.remove} onClick={this.handleRemove}>&#10060;</button>
-          <button
-            className={this.beingEdited ? styles.editActive : styles.edit}
-            onClick={this.toggleBeingEdited}
-          >&#9999;</button>
-        </section>
-        {
-          this.beingEdited ?
-            <textarea
-              className={styles.editTitle}
-              value={this.title}
-              onChange={this.handleTitleEditing}
-            /> :
-            <h3 className={styles.title}>{this.title}</h3>
-        }{
-          this.beingEdited ?
-            <textarea
-              className={styles.editBody}
-              value={this.body}
-              onChange={this.handleBodyEditing}
-            /> :
-            <div className={styles.body}>{this.body}</div>
-        }
+      <article>
+
       </article>
     )
   }
