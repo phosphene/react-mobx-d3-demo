@@ -6,48 +6,33 @@ export default class ThrashDashDC {
 
   constructor(el, props = {}) {
     //we initiate charts in constructor
-    this.stickFunHollowBubbleChart = bubbleChart('#chart-bubble-stick-fun-hollow');
-    this.stickFunQualityBubbleChart = bubbleChart('#chart-bubble-stick-fun-quality');
-    this.stickFunCrowdBubbleChart = bubbleChart('#chart-bubble-stick-fun-crowd');
-    this.qualityFactorChart = barChart('#chart-bar-quality-factor');
-    this.hollowFactorChart = barChart('#chart-bar-hollow-factor');
-    this.crowdFactorChart = barChart('#chart-bar-crowd-factor');
-    this.funFactorChart = barChart('#chart-bar-fun-factor');
-    this.yearChart = pieChart('#chart-ring-year');
-    this.monthChart = pieChart('#chart-ring-month');
-    this.dayChart = pieChart('#chart-ring-day');
+    this.myCharts = ThrashDashDC.initCharts();
   }
 
   render() {
-    const stickFunHollowBubbleChart = this.stickFunHollowBubbleChart;
-    const stickFunQualityBubbleChart = this.stickFunQualityBubbleChart;
-    const stickFunCrowdBubbleChart = this.stickFunCrowdBubbleChart;
-    const qualityFactorChart = this.qualityFactorChart;
-    const hollowFactorChart = this.hollowFactorChart;
-    const crowdFactorChart = this.crowdFactorChart;
-    const funFactorChart = this.funFactorChart;
-    const yearChart = this.yearChart;
-    const monthChart = this.monthChart;
-    const dayChart = this.dayChart;
+    //de-structure myCharts object
+    const {stickFunHollowBubbleChart, stickFunQualityBubbleChart, stickFunCrowdBubbleChart,
+           qualityFactorChart, hollowFactorChart , crowdFactorChart,
+           funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
 
     d3.json('data/thrashtown.json', (error, data) => {
 
       const surfData = this.formatData(data);
 
       const ttx = crossfilter(surfData);
-      //console.log(ttx.size());
+      // build the x dimensions
       const xDims = this.buildXDimensions(ttx);
-
+      //destructure the xDims object
       const {qualityFactorDim, hollowFactorDim, crowdFactorDim,
              funFactorDim, yearDim, monthDim, dayDim,
              stickDimQuality, stickDimCrowd, stickDimHollow} = xDims;
-
+      //build the Y groups
       const yGroups = this.buildYGroups(ttx, xDims);
-
+      //de-structure they yGroups object
       const {all, countPerQualityFactor, countPerHollowFactor, countPerCrowdFactor,
-              countPerFunFactor, countPerYear, countPerMonth,countPerDay,
-              stickGroupQuality, stickGroupCrowd, stickGroupHollow} = yGroups;
-
+             countPerFunFactor, countPerYear, countPerMonth,countPerDay,
+             stickGroupQuality, stickGroupCrowd, stickGroupHollow} = yGroups;
+      //dc.js Charts chained configuration
       stickFunQualityBubbleChart
         .width(400)
         .height(250)
@@ -251,29 +236,55 @@ export default class ThrashDashDC {
     });
   }
 
+
+  static initCharts() {
+    const stickFunHollowBubbleChart = bubbleChart('#chart-bubble-stick-fun-hollow');
+    const stickFunQualityBubbleChart = bubbleChart('#chart-bubble-stick-fun-quality');
+    const stickFunCrowdBubbleChart = bubbleChart('#chart-bubble-stick-fun-crowd');
+    const qualityFactorChart = barChart('#chart-bar-quality-factor');
+    const hollowFactorChart = barChart('#chart-bar-hollow-factor');
+    const crowdFactorChart = barChart('#chart-bar-crowd-factor');
+    const funFactorChart = barChart('#chart-bar-fun-factor');
+    const yearChart = pieChart('#chart-ring-year');
+    const monthChart = pieChart('#chart-ring-month');
+    const dayChart = pieChart('#chart-ring-day');
+
+    const myCharts = {stickFunHollowBubbleChart, stickFunQualityBubbleChart, stickFunCrowdBubbleChart,
+                      qualityFactorChart, hollowFactorChart , crowdFactorChart,
+                      funFactorChart, yearChart, monthChart, dayChart};
+
+
+    return myCharts;
+  }
+
+
   resetChart(chartName) {
+
+    let {stickFunHollowBubbleChart, stickFunQualityBubbleChart, stickFunCrowdBubbleChart,
+         qualityFactorChart, hollowFactorChart , crowdFactorChart,
+         funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
 
     switch (chartName) {
       case "chart-ring-year":
-        this.yearChart.filterAll();
+        yearChart.filterAll();
         break;
       case "chart-ring-month":
-        this.monthChart.filterAll();
+        monthChart.filterAll();
         break;
       case "chart-ring-day":
-        this.dayChart.filterAll();
+        dayChart.filterAll();
         break;
       case "chart-bar-fun-factor":
-        this.funFactorChart.filterAll();
+        funFactorChart.filterAll();
         break;
       case "chart-bar-crowd-factor":
-        this.crowdFactorChart.filterAll();
+        crowdFactorChart.filterAll();
         break;
       case "chart-bar-hollow-factor":
-        this.hollowFactorChart.filterAll();
+        hollowFactorChart.filterAll();
         break;
       case "chart-bar-quality-factor":
-        this.qualityFactorChart.filterAll();
+        qualityFactorChart.filterAll();
         break;
       default:
         //Statements executed when none of the values match the value of the expression
@@ -449,5 +460,5 @@ export default class ThrashDashDC {
 
   }
 
-
+  //end of class
 }
