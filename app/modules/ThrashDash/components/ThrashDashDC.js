@@ -16,9 +16,8 @@ export default class ThrashDashDC {
            funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
 
     d3.json('data/thrashtown.json', (error, data) => {
-
+      //format the data
       const surfData = this.formatData(data);
-
       const ttx = crossfilter(surfData);
       // build the x dimensions
       const xDims = this.buildXDimensions(ttx);
@@ -360,6 +359,57 @@ export default class ThrashDashDC {
     const countPerYear = yearDim.group().reduceCount();
     const countPerMonth = monthDim.group().reduceCount();
     const countPerDay = dayDim.group().reduceCount();
+    //map reduce functions
+    const stickGroupQuality = this.buildStickGQ(stickDimQuality);
+    const stickGroupCrowd = this.buildStickGC(stickDimCrowd);
+    const stickGroupHollow = this.buildStickGH(stickDimHollow);
+
+    const yGroups = {all, countPerQualityFactor, countPerHollowFactor, countPerCrowdFactor,
+                     countPerFunFactor, countPerYear, countPerMonth, countPerDay,
+                     stickGroupQuality, stickGroupCrowd, stickGroupHollow};
+
+    return yGroups;
+
+  }
+
+
+  //map reduce
+  buildStickGH(stickDimHollow){
+    const stickGH = stickDimHollow.group().reduce(
+      (p, v) => {
+                    ++p.count;
+        p.board = v.board.name;
+        p.hollowness += v.hollowness;
+        p.funFactor += v.funFactor;
+        p.avgHollowness = p.hollowness / p.count;
+        p.avgFunFactor = p.funFactor / p.count;
+        return p;
+      },
+      (p, v) => {
+        p.hollowness -= v.hollowness;
+        p.funFactor -= v.funFactor;
+        p.avgHollowness = p.count ? v.hollowness / p.count : 0;
+        p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
+                        --p.count;
+        return p
+      },
+      () => {
+        return {
+          board:0,
+          count:0,
+          hollowness:0,
+          funFactor:0,
+          avgFunFactor:0,
+          avgCrowdedness:0,
+          avgFunToCrowd:0,
+        };
+      }
+    );
+    return stickGH;
+  }
+
+
+  buildStickGQ(stickDimQuality){
     const stickGroupQuality = stickDimQuality.group().reduce(
       (p, v) => {
                     ++p.count;
@@ -389,7 +439,10 @@ export default class ThrashDashDC {
         };
       }
     );
+    return stickGroupQuality;
+  }
 
+  buildStickGC(stickDimCrowd){
     const stickGroupCrowd = stickDimCrowd.group().reduce(
       (p, v) => {
                     ++p.count;
@@ -420,44 +473,7 @@ export default class ThrashDashDC {
         };
       }
     );
-
-    const stickGroupHollow = stickDimHollow.group().reduce(
-      (p, v) => {
-                    ++p.count;
-        p.board = v.board.name;
-        p.hollowness += v.hollowness;
-        p.funFactor += v.funFactor;
-        p.avgHollowness = p.hollowness / p.count;
-        p.avgFunFactor = p.funFactor / p.count;
-        return p;
-      },
-      (p, v) => {
-        p.hollowness -= v.hollowness;
-        p.funFactor -= v.funFactor;
-        p.avgHollowness = p.count ? v.hollowness / p.count : 0;
-        p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
-                        --p.count;
-        return p
-      },
-      () => {
-        return {
-          board:0,
-          count:0,
-          hollowness:0,
-          funFactor:0,
-          avgFunFactor:0,
-          avgCrowdedness:0,
-          avgFunToCrowd:0,
-        };
-      }
-    );
-
-    const yGroups = {all, countPerQualityFactor, countPerHollowFactor, countPerCrowdFactor,
-                     countPerFunFactor, countPerYear, countPerMonth, countPerDay,
-                     stickGroupQuality, stickGroupCrowd, stickGroupHollow};
-
-    return yGroups;
-
+    return stickGroupCrowd;
   }
 
   //end of class
