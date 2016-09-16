@@ -36,114 +36,17 @@ export default class ThrashDashDC {
 
       const ttx = crossfilter(surfData);
       //console.log(ttx.size());
+      const xDims = this.buildXDimensions(ttx);
 
       const {qualityFactorDim, hollowFactorDim, crowdFactorDim,
              funFactorDim, yearDim, monthDim, dayDim,
-             stickDimQuality, stickDimCrowd, stickDimHollow} = this.buildXDimensions(ttx);
+             stickDimQuality, stickDimCrowd, stickDimHollow} = xDims;
 
+      const yGroups = this.buildYGroups(ttx, xDims);
 
-
-      // create groups (y-axis values)
-      const all = ttx.groupAll();
-      const countPerQualityFactor = qualityFactorDim.group().reduceCount();
-      const countPerHollowFactor = hollowFactorDim.group().reduceCount();
-      const countPerCrowdFactor = crowdFactorDim.group().reduceCount();
-      const countPerFunFactor = funFactorDim.group().reduceCount();
-      const countPerYear = yearDim.group().reduceCount();
-      const countPerMonth = monthDim.group().reduceCount();
-      const countPerDay = dayDim.group().reduceCount();
-      const stickGroupQuality = stickDimQuality.group().reduce(
-        (p, v) => {
-                    ++p.count;
-          p.board = v.board.name;
-          p.funFactor += v.funFactor;
-          p.waveQuality += v.waveQuality;
-          p.avgFunFactor = p.funFactor / p.count;
-          p.avgWaveQuality = p.waveQuality / p.count;
-          return p;
-        },
-        (p, v) => {
-          p.funFactor -= v.funFactor;
-          p.waveQuality -= v.waveQuality;
-          p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
-          p.avgWaveQuality = p.count ? p.waveQuality / p.count : 0;
-                            --p.count;
-          return p
-        },
-        () => {
-          return {
-            board:0,
-            count:0,
-            waveQuality:0,
-            funFactor:0,
-            avgFunFactor:0,
-            avgWaveQuality:0,
-          };
-        }
-      );
-
-      const stickGroupCrowd = stickDimCrowd.group().reduce(
-        (p, v) => {
-                    ++p.count;
-          p.board = v.board.name;
-          p.crowdedness += v.crowdedness;
-          p.funFactor += v.funFactor;
-          p.avgCrowdedness = p.crowdedness / p.count;
-          p.avgFunFactor = p.funFactor / p.count;
-          return p;
-        },
-        (p, v) => {
-          p.crowdedness -= v.crowdedness;
-          p.funFactor -= v.funFactor;
-          p.avgCrowdedness = p.count ? v.crowdedness / p.count : 0;
-          p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
-                          --p.count;
-          return p
-        },
-        () => {
-          return {
-            board:0,
-            count:0,
-            crowdedness:0,
-            funFactor:0,
-            avgFunFactor:0,
-            avgCrowdedness:0,
-            avgFunToCrowd:0,
-          };
-        }
-      );
-
-      const stickGroupHollow = stickDimHollow.group().reduce(
-        (p, v) => {
-                    ++p.count;
-          p.board = v.board.name;
-          p.hollowness += v.hollowness;
-          p.funFactor += v.funFactor;
-          p.avgHollowness = p.hollowness / p.count;
-          p.avgFunFactor = p.funFactor / p.count;
-          return p;
-        },
-        (p, v) => {
-          p.hollowness -= v.hollowness;
-          p.funFactor -= v.funFactor;
-          p.avgHollowness = p.count ? v.hollowness / p.count : 0;
-          p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
-                          --p.count;
-          return p
-        },
-        () => {
-          return {
-            board:0,
-            count:0,
-            hollowness:0,
-            funFactor:0,
-            avgFunFactor:0,
-            avgCrowdedness:0,
-            avgFunToCrowd:0,
-          };
-        }
-      );
-
+      const {all, countPerQualityFactor, countPerHollowFactor, countPerCrowdFactor,
+              countPerFunFactor, countPerYear, countPerMonth,countPerDay,
+              stickGroupQuality, stickGroupCrowd, stickGroupHollow} = yGroups;
 
       stickFunQualityBubbleChart
         .width(400)
@@ -399,7 +302,6 @@ export default class ThrashDashDC {
       d.sessionDay = dayFormat(dateObj);
     });
 
-
     return surfData;
   }
 
@@ -424,9 +326,126 @@ export default class ThrashDashDC {
       return x.name;
     }));
 
-    return { qualityFactorDim, hollowFactorDim, crowdFactorDim,
-             funFactorDim, yearDim, monthDim, dayDim,
-             stickDimQuality, stickDimCrowd, stickDimHollow };
+    const xDims = { qualityFactorDim, hollowFactorDim, crowdFactorDim,
+                    funFactorDim, yearDim, monthDim, dayDim,
+                    stickDimQuality, stickDimCrowd, stickDimHollow };
+    return xDims;
+
+  }
+
+
+  buildYGroups(ttx, xDims){
+
+    const {qualityFactorDim, hollowFactorDim, crowdFactorDim,
+           funFactorDim, yearDim, monthDim, dayDim,
+           stickDimQuality, stickDimCrowd, stickDimHollow} = xDims;
+
+    // create groups (y-axis values)
+    const all = ttx.groupAll();
+    const countPerQualityFactor = qualityFactorDim.group().reduceCount();
+    const countPerHollowFactor = hollowFactorDim.group().reduceCount();
+    const countPerCrowdFactor = crowdFactorDim.group().reduceCount();
+    const countPerFunFactor = funFactorDim.group().reduceCount();
+    const countPerYear = yearDim.group().reduceCount();
+    const countPerMonth = monthDim.group().reduceCount();
+    const countPerDay = dayDim.group().reduceCount();
+    const stickGroupQuality = stickDimQuality.group().reduce(
+      (p, v) => {
+                    ++p.count;
+        p.board = v.board.name;
+        p.funFactor += v.funFactor;
+        p.waveQuality += v.waveQuality;
+        p.avgFunFactor = p.funFactor / p.count;
+        p.avgWaveQuality = p.waveQuality / p.count;
+        return p;
+      },
+      (p, v) => {
+        p.funFactor -= v.funFactor;
+        p.waveQuality -= v.waveQuality;
+        p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
+        p.avgWaveQuality = p.count ? p.waveQuality / p.count : 0;
+                          --p.count;
+        return p
+      },
+      () => {
+        return {
+          board:0,
+          count:0,
+          waveQuality:0,
+          funFactor:0,
+          avgFunFactor:0,
+          avgWaveQuality:0,
+        };
+      }
+    );
+
+    const stickGroupCrowd = stickDimCrowd.group().reduce(
+      (p, v) => {
+                    ++p.count;
+        p.board = v.board.name;
+        p.crowdedness += v.crowdedness;
+        p.funFactor += v.funFactor;
+        p.avgCrowdedness = p.crowdedness / p.count;
+        p.avgFunFactor = p.funFactor / p.count;
+        return p;
+      },
+      (p, v) => {
+        p.crowdedness -= v.crowdedness;
+        p.funFactor -= v.funFactor;
+        p.avgCrowdedness = p.count ? v.crowdedness / p.count : 0;
+        p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
+                        --p.count;
+        return p
+      },
+      () => {
+        return {
+          board:0,
+          count:0,
+          crowdedness:0,
+          funFactor:0,
+          avgFunFactor:0,
+          avgCrowdedness:0,
+          avgFunToCrowd:0,
+        };
+      }
+    );
+
+    const stickGroupHollow = stickDimHollow.group().reduce(
+      (p, v) => {
+                    ++p.count;
+        p.board = v.board.name;
+        p.hollowness += v.hollowness;
+        p.funFactor += v.funFactor;
+        p.avgHollowness = p.hollowness / p.count;
+        p.avgFunFactor = p.funFactor / p.count;
+        return p;
+      },
+      (p, v) => {
+        p.hollowness -= v.hollowness;
+        p.funFactor -= v.funFactor;
+        p.avgHollowness = p.count ? v.hollowness / p.count : 0;
+        p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
+                        --p.count;
+        return p
+      },
+      () => {
+        return {
+          board:0,
+          count:0,
+          hollowness:0,
+          funFactor:0,
+          avgFunFactor:0,
+          avgCrowdedness:0,
+          avgFunToCrowd:0,
+        };
+      }
+    );
+
+    const yGroups = {all, countPerQualityFactor, countPerHollowFactor, countPerCrowdFactor,
+                     countPerFunFactor, countPerYear, countPerMonth, countPerDay,
+                     stickGroupQuality, stickGroupCrowd, stickGroupHollow};
+
+    return yGroups;
 
   }
 
