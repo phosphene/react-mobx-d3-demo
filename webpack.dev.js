@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import cssnext from 'postcss-cssnext';
 import postcssReporter from 'postcss-reporter';
 import { config, babelConfig } from './package.json';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const SRC = path.resolve(__dirname, 'app');
 const BUILD = path.resolve(__dirname, 'server/public');
@@ -52,7 +53,12 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: '[name].bundle.js',
-    })
+    }),
+    new CopyWebpackPlugin([
+      {context: 'node_modules/react-bootstrap-theme-switcher/themes/', from: '**/*', to: 'themes/'}
+    ],
+                          {copyUnmodified: true}
+    )
   ],
   postcss: () => [
     cssnext({
