@@ -9,10 +9,10 @@ import V4Port from './modules/V4Port';
 import ThrashDash from './modules/ThrashDash';
 
 export default (
-  <Route path="/" component={App}>
-    <IndexRoute component={Timer} />
-    <Route path="bubble" component={BubbleWrap} />
-    <Route path="v4port" component={V4Port} />
-    <Route path="thrashdash" component={ThrashDash} />
+    <Route path="/" component={App}>
+      <IndexRoute component={Timer} />
+      <Route path="bubble" component={BubbleWrap} />
+      <Route path="v4port" component={V4Port} />
+      <Route path="thrashdash" component={ThrashDash} />
   </Route>
 );

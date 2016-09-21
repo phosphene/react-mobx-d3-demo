@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var cssnext  = require('postcss-cssnext');
 var postcssReporter = require('postcss-reporter');
 //import { config, babelConfig } from './package.json';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const SRC = path.resolve(__dirname, 'app');
 const BUILD = path.resolve(__dirname, 'server/public');
@@ -46,6 +47,12 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new CopyWebpackPlugin([
+      {context: 'node_modules/react-bootstrap-theme-switcher/themes/', from: '**/*', to: '/themes/'}
+    ],
+                          {copyUnmodified: true}
+    )
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: '[name].bundle.js',

@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 //import styles from './styles.css';
+import { ThemeChooser } from 'react-bootstrap-theme-switcher';
 
 @observer(["timerStore"])
 export default class Home extends Component {
@@ -22,7 +23,9 @@ export default class Home extends Component {
   render() {
     return (
       <div>
+       <ThemeChooser/>
         <div>Welcome to a basic sample app with an arbitrary timer. The header nav has links to visualizations</div>
+
         <h1>
           <span>Timer:</span>
           <span> {this.store.counter}</span>

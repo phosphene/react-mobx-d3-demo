@@ -5,16 +5,20 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'dc/dc.css';
+import { ThemeSwitcher } from 'react-bootstrap-theme-switcher';
+
 
 const rootEl = document.getElementById('root');
 
 render(
   <AppContainer>
-    <Router
-      routes={routes}
-      history={browserHistory}
-      key={process.env.NODE_ENV !== "production" ? Math.random() : false}
-    />
+    <ThemeSwitcher themePath="themes" defaultTheme="cerulean">
+      <Router
+          routes={routes}
+          history={browserHistory}
+          key={process.env.NODE_ENV !== "production" ? Math.random() : false}
+      />
+    </ThemeSwitcher>
   </AppContainer>,
   rootEl
 );
@@ -26,11 +30,13 @@ if (module.hot) {
     const routes = require('./routes').default;
     render(
       <AppContainer>
+        <ThemeSwitcher themePath="themes" defaultTheme="yeti">
         <Router
           routes={routes}
           history={browserHistory}
           key={process.env.NODE_ENV !== "production" ? Math.random() : false}
         />
+        </ThemeSwitcher>
       </AppContainer>,
       rootEl
     );

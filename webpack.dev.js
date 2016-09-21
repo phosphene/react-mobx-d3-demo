@@ -55,7 +55,7 @@ module.exports = {
       filename: '[name].bundle.js',
     }),
     new CopyWebpackPlugin([
-      {context: 'node_modules/react-bootstrap-theme-switcher/themes/', from: '**/*', to: 'themes/'}
+      {context: 'node_modules/react-bootstrap-theme-switcher/themes/', from: '**/*', to: '/themes/'}
     ],
                           {copyUnmodified: true}
     )
