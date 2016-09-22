@@ -1,0 +1,34 @@
+.dc-chart .axis path,
+.dc-chart .axis line {
+  fill: none;
+  stroke: White;
+  shape-rendering: crispEdges;
+}
+
+.dc-chart .axis text {
+  font: 10px sans-serif;
+  fill: #fff;
+}
+
+.dc-chart .grid-line {
+  fill: none;
+  stroke: #fff;
+  opacity: .5;
+  shape-rendering: crispEdges;
+}
+
+.dc-chart .grid-line line {
+  fill: none;
+  stroke: #fff;
+  opacity: .5;
+  shape-rendering: crispEdges;
+}
+
+.dc-legend {
+  font-size: 11px;
+  font-color: #fff;
+}
+
+.dc-legend-item {
+  cursor: pointer;
+}
