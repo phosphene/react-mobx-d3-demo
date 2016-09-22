@@ -12,7 +12,7 @@ const rootEl = document.getElementById('root');
 
 render(
   <AppContainer>
-    <ThemeSwitcher themePath="themes" defaultTheme="cerulean">
+    <ThemeSwitcher themePath="themes" defaultTheme="cerulean" storeThemeKey="theme">
       <Router
           routes={routes}
           history={browserHistory}
