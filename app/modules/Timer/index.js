@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 //import styles from './styles.css';
-import { ThemeChooser } from 'react-bootstrap-theme-switcher';
+import { ThemeSwitcher, ThemeChooser } from 'react-bootstrap-theme-switcher';
 
 @observer(["timerStore"])
 export default class Home extends Component {
@@ -22,6 +22,9 @@ export default class Home extends Component {
 
   render() {
     return (
+      <div>
+          <ThemeSwitcher themePath="themes" defaultTheme="yeti" storeThemeKey="theme">
+
       <div>
        <ThemeChooser/>
         <div>Welcome to a basic sample app with an arbitrary timer. The header nav has links to visualizations</div>
@@ -43,6 +46,8 @@ export default class Home extends Component {
 
         >+10</button>
       </div>
+      </ThemeSwitcher>
+     </div>
     );
   }
 }

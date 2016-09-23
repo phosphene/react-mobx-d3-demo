@@ -1,7 +1,7 @@
 import ThrashDashDC from './ThrashDashDC';
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-
+import { ThemeChooser } from 'react-bootstrap-theme-switcher';
 
 class ThrashWrapper extends React.Component {
 
@@ -24,7 +24,10 @@ class ThrashWrapper extends React.Component {
         }
 
         return (
+           <div>
+             <ThemeChooser style={{display: 'inline'}}/> <span style={{fontSize: '1.0em'}}> This is the ThemeChooser Component</span>
             <div className="container-fluid">
+
                 <div className="row">
                     <div className="col-xs-4">
                         <div id="chart-bubble-stick-fun-hollow"></div>
@@ -86,6 +89,7 @@ class ThrashWrapper extends React.Component {
                     </div>
                 </div>
             </div>
+           </div>
         );
 
     }
