@@ -5,7 +5,6 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'dc/dc.css';
-import './shared/css/dc_custom.css';
 
 import { ThemeSwitcher } from 'react-bootstrap-theme-switcher';
 

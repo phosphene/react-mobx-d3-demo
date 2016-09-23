@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../shared/css/dc_custom.css';
 import ThrashWrapper from './components/ThrashWrapper';
 /* This file can serve as the index for this level of component namespace
  * it is currently being used that way as a convenient way to develop
