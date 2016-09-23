@@ -12,6 +12,7 @@ export default function Header() {
           <NavItem href="/">Home</NavItem>
           <NavItem href="thrashdash">Thrash Dash</NavItem>
           <NavItem href="dreamdash">Dream Dash</NavItem>
+          <NavItem href="noaadash">NOAA Dash</NavItem>
         </Nav>
        </Navbar>
     </div>
