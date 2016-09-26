@@ -12,15 +12,12 @@ export default class NOAADash extends Component {
   }
 
   render() {
-    let themes = ['default', 'cyborg', 'darkly'];
+    let themes = ['slate', 'cyborg', 'darkly', 'superhero'];
+
     return (
       <ThemeSwitcher themePath="/themes" defaultTheme="cyborg" storeThemeKey="thrashtheme" themes={themes}>
-
-     <NOAAWrapper/>
-
+        <NOAAWrapper/>
       </ThemeSwitcher>
     );
   }
 }
-
-//export store from './store';
