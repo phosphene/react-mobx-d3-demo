@@ -11,57 +11,50 @@ export default class NOAADashDC {
 
   render() {
     //de-structure myCharts object
-    const {stickFunHollowBubbleChart} = this.myCharts;
+    const {heightChart} = this.myCharts;
 
-    d3.json('data/thrashtown.json', (error, data) => {
+    d3.csv('data/jan_wv_dec_cc', (error, data) => {
       //format the data
-      const surfData = this.formatData(data);
-      const ttx = crossfilter(surfData);
+      const buoyData = this.formatData(data);
+      const wavesx = crossfilter(buoyData);
       // build the x dimensions
-      const xDims = this.buildXDimensions(ttx);
+      const xDims = this.buildXDimensions(wavesx);
       //destructure the xDims object
-      const {stickDimHollow} = xDims;
+      const {heightDim} = xDims;
       //build the Y groups
-      const yGroups = this.buildYGroups(ttx, xDims);
+      const yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
-      const {stickGroupHollow} = yGroups;
+      const {heightGroup} = yGroups;
       //dc.js Charts chained configuration
 
-      stickFunHollowBubbleChart
-        .width(400)
-        .height(250)
-        .transitionDuration(1500)
-        .margins({top:10, right:50, bottom:30, left:40})
-        .dimension(stickDimHollow)
-        .group(stickGroupHollow)
-        .ordinalColors(colorbrewer.Spectral[7])
-        .colorAccessor((p) => {
-          return p.value.board;
-        })
-        .keyAccessor((p) => {
-          return p.value.avgHollowness;
-        })
-        .valueAccessor((p) => {
-          return p.value.avgFunFactor;
-        })
-        .radiusValueAccessor((p) => {
-          return p.value.count;
-        })
-        .maxBubbleRelativeSize(0.2)
-        .x(d3.scale.linear().domain([0, 5]))
-        .y(d3.scale.linear().domain([0, 5]))
-        .r(d3.scale.linear().domain([0, 100]))
-        .elasticY(false)
-        .elasticX(false)
-        .yAxisPadding(100)
-        .xAxisPadding(500)
-        .renderHorizontalGridLines(true)
-        .renderVerticalGridLines(true)
-        .xAxisLabel('Hollow')
-        .yAxisLabel('Fun')
-        .yAxis().tickFormat(function (v) {
-          return v + '%';
+        /* dc.barChart("#height-chart") */
+        heightChart
+            .width(300)
+            .height(180)
+            .margins({top: 10, right: 50, bottom: 30, left: 40})
+            .dimension(heightDim)
+            .group(heightGroup)
+            .elasticY(true)
+            // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
+            .centerBar(true)
+            // (optional) set gap between bars manually in px, :default=2
+            .gap(65)
+            // (optional) set filter brush rounding
+            .round(dc.round.floor)
+            .x(d3.scale.linear().domain([0, 7]))
+            .renderHorizontalGridLines(true)
+            // customize the filter displayed in the control span
+            .filterPrinter(function (filters) {
+                var filter = filters[0], s = "";
+                s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
+                return s;
         });
+
+        // Customize axis
+        heightChart.xAxis().tickFormat(
+        function (v) { return v + "met"; });
+        heightChart.yAxis().ticks(5);
+
 
       //draw the viz!
       renderAll();
@@ -70,9 +63,9 @@ export default class NOAADashDC {
   }
 
   static initCharts() {
-    const stickFunHollowBubbleChart = bubbleChart('#chart-bubble-stick-fun-hollow');
+    const heightChart = barChart('#chart-height');
 
-    const myCharts = {stickFunHollowBubbleChart}
+    const myCharts = {heightChart}
 
 
     return myCharts;
@@ -81,11 +74,11 @@ export default class NOAADashDC {
 
   resetChart(chartName) {
 
-    let {stickFunHollowBubbleChart} = this.myCharts;
+    let {heightChart} = this.myCharts;
 
     switch (chartName) {
-      case "chart-bubble-stick-fun-hollow":
-        stickFunHollowBubbleChart.filterAll();
+      case "height-chart":
+        heightChart.filterAll();
         break;
       default:
         //Statements executed when none of the values match the value of the expression
@@ -99,89 +92,49 @@ export default class NOAADashDC {
 
   formatData(data){
 
-    const surfData = data;
+    const buoyData = data;
 
-    const fullDateFormat = d3.time.format("%a, %d %b %Y %X %Z");
-    const yearFormat = d3.time.format('%Y');
-    const monthFormat = d3.time.format('%b');
-    const dayFormat = d3.time.format('%a');
+    const dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
 
-    surfData.forEach(d=>{
-      let dateObj  = new Date(d.sessionDate);
-      d.sessionDateFormatted = fullDateFormat(dateObj);
-      d.sessionYear = +yearFormat(dateObj);
-      d.sessionMonth = monthFormat(dateObj);
-      d.sessionDay = dayFormat(dateObj);
+    buoyData.forEach(d=>{
+        console.log(d.wvht);
+        d.dd = dateFormat.parse(d.origintime);
+        d.day = d3.time.day(d.dd); // pre-calculate day for better performance
+        d.month = d3.time.month(d.dd);
+        d.year = d3.time.year(d.dd);
+        d.wvdp   = d3.round(+d.wvdp,1);
+        d.wvht = d3.round(+d.wvht,1);
+        d.wndir = +d.wndir;
     });
 
-    return surfData;
+    return buoyData;
   }
 
 
 
-  buildXDimensions(ttx){
+  buildXDimensions(xwaves){
     // create dimensions (x-axis values)
-    const stickDimHollow  = ttx.dimension(pluck("board", (x,i) => {
-      return x.name;
-    }));
 
-    const xDims = { stickDimHollow };
+    const heightDim  = xwaves.dimension(pluck("wvht"));
+    const xDims = { heightDim };
     return xDims;
 
   }
 
 
-  buildYGroups(ttx, xDims){
+  buildYGroups(wavesx, xDims){
 
-    const {stickDimHollow} = xDims;
+    const {heightDim} = xDims;
 
     // create groups (y-axis values)
     //map reduce functions
-    const stickGroupHollow = this.buildStickGH(stickDimHollow);
+    const heightGroup = heightDim.group();
 
-    const yGroups = {stickGroupHollow};
+    const yGroups = {heightGroup};
 
     return yGroups;
 
   }
-
-
-  //map reduce
-  buildStickGH(stickDimHollow){
-    const stickGH = stickDimHollow.group().reduce(
-      (p, v) => {
-                    ++p.count;
-        p.board = v.board.name;
-        p.hollowness += v.hollowness;
-        p.funFactor += v.funFactor;
-        p.avgHollowness = p.hollowness / p.count;
-        p.avgFunFactor = p.funFactor / p.count;
-        return p;
-      },
-      (p, v) => {
-        p.hollowness -= v.hollowness;
-        p.funFactor -= v.funFactor;
-        p.avgHollowness = p.count ? v.hollowness / p.count : 0;
-        p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
-                        --p.count;
-        return p
-      },
-      () => {
-        return {
-          board:0,
-          count:0,
-          hollowness:0,
-          funFactor:0,
-          avgFunFactor:0,
-          avgCrowdedness:0,
-          avgFunToCrowd:0,
-        };
-      }
-    );
-    return stickGH;
-  }
-
-
 
   //end of class
 }

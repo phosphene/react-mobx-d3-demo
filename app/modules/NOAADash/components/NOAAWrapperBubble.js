@@ -30,7 +30,7 @@ class NOAAWrapper extends React.Component {
 
                 <div className="row">
                     <div className="col-xs-12">
-                        <div id="chart-height"></div>
+                        <div id="chart-bubble-stick-fun-hollow"></div>
                     </div>
                </div>
             </div>
