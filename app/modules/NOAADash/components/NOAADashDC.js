@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import {crossfilter, units, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck} from 'dc';
+import {crossfilter, units, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck, round} from 'dc';
 import * as colorbrewer from "colorbrewer";
 //we can call export at the top of the class declaration
 export default class NOAADashDC {
@@ -13,7 +13,7 @@ export default class NOAADashDC {
     //de-structure myCharts object
     const {heightChart} = this.myCharts;
 
-    d3.csv('data/jan_wv_dec_cc', (error, data) => {
+    d3.csv('data/jan_wv_dec_cc.csv', (error, data) => {
       //format the data
       const buoyData = this.formatData(data);
       const wavesx = crossfilter(buoyData);
@@ -40,7 +40,7 @@ export default class NOAADashDC {
             // (optional) set gap between bars manually in px, :default=2
             .gap(65)
             // (optional) set filter brush rounding
-            .round(dc.round.floor)
+            .round(round.floor)
             .x(d3.scale.linear().domain([0, 7]))
             .renderHorizontalGridLines(true)
             // customize the filter displayed in the control span
