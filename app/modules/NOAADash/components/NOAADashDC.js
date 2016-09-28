@@ -25,6 +25,8 @@ export default class NOAADashDC {
       const yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
       const {heightGroup} = yGroups;
+      //call number format
+      const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
 
         /* dc.barChart("#height-chart") */
@@ -96,8 +98,8 @@ export default class NOAADashDC {
 
     const dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
 
+
     buoyData.forEach(d=>{
-        console.log(d.wvht);
         d.dd = dateFormat.parse(d.origintime);
         d.day = d3.time.day(d.dd); // pre-calculate day for better performance
         d.month = d3.time.month(d.dd);
@@ -110,7 +112,10 @@ export default class NOAADashDC {
     return buoyData;
   }
 
+  numberFormat(){
 
+    return d3.format(".2f");
+  }
 
   buildXDimensions(xwaves){
     // create dimensions (x-axis values)
