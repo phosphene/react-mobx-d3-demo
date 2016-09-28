@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import * as dc from 'dc'
 import {crossfilter, units, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck} from 'dc';
 import * as colorbrewer from "colorbrewer";
 //we can call export at the top of the class declaration
@@ -319,9 +320,9 @@ export default class ThrashDashDC {
 
   buildXDimensions(ttx){
     // create dimensions (x-axis values)
-    const qualityFactorDim  = ttx.dimension(pluck("waveQuality"));
-    const hollowFactorDim  = ttx.dimension(pluck("hollowness"));
-    const crowdFactorDim  = ttx.dimension(pluck("crowdedness"));
+    const qualityFactorDim  = ttx.dimension(dc.pluck("waveQuality"));
+    const hollowFactorDim  = ttx.dimension(dc.pluck("hollowness"));
+    const crowdFactorDim  = ttx.dimension(dc.pluck("crowdedness"));
     const funFactorDim  = ttx.dimension(pluck("funFactor"));
     const yearDim  = ttx.dimension(pluck("sessionYear"));
     const monthDim  = ttx.dimension(pluck("sessionMonth"));
