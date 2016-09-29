@@ -113,15 +113,6 @@ export default class NOAADashDC {
   }
 
 
-  getMinMaxReducer(group, row){
-
-    return reductio().min(function(d) { return +row; })
-                     .max(true)
-                     .median(true)(group);
-
-
-  }
-
   buildXDimensions(xwaves){
     // create dimensions (x-axis values)
 

@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import {crossfilter, units, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck, round} from 'dc';
 import * as colorbrewer from "colorbrewer";
-//import * as reductio from "reductio";
+import reductio from "reductio";
 //we can call export at the top of the class declaration
 export default class ReductDashDC {
 
@@ -25,7 +25,14 @@ export default class ReductDashDC {
       const yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
       const {heightGroup} = yGroups;
-      //call number format
+      /*
+       *       reductio().min(function(d) { return +d.wvht; })
+       *                 .max(true)
+       *                 .median(true)(heightGroup);
+       *        console.log(yGroups)
+       *
+       * */
+     //call number format
       const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
       //const reducer = reductio().count(true);
@@ -39,6 +46,7 @@ export default class ReductDashDC {
 
     });
   }
+
 
   static initCharts() {
     const heightChart = barChart('#chart-height');
