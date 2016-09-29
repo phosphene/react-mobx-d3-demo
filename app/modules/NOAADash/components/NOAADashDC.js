@@ -112,9 +112,14 @@ export default class NOAADashDC {
     return buoyData;
   }
 
-  numberFormat(){
 
-    return d3.format(".2f");
+  getMinMaxReducer(group, row){
+
+    return reductio().min(function(d) { return +row; })
+                     .max(true)
+                     .median(true)(group);
+
+
   }
 
   buildXDimensions(xwaves){
