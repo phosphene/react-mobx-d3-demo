@@ -18,6 +18,7 @@ export default class ReductDash {
     d3.csv('data/jan_wv_dec_cc.csv', (error, data) => {
       //format the data
       const buoyData = this.formatData(data);
+      const numberFormat = d3.format(".2f");
 
       const wavesx = crossfilter(buoyData);
 
@@ -31,8 +32,9 @@ export default class ReductDash {
       const yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
       let {heightGroup} = yGroups;
-      let reducer = reductio().sum('wvht');
-      //reducer(heightGroup);
+      console.log(heightGroup.all());
+      let reducer = reductio().count(true).min("wvht").max(true).median(true);
+      reducer(heightGroup);
       console.log(heightGroup.all());
 
      //call number format
@@ -51,6 +53,7 @@ export default class ReductDash {
         .margins({top: 10, right: 50, bottom: 30, left: 40})
         .dimension(heightDim)
         .group(heightGroup)
+        .valueAccessor((d) =>{return d.value.count})
         .elasticY(true)
       // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
         .centerBar(true)
