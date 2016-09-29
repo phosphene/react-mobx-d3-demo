@@ -13,6 +13,7 @@ export default function Header() {
           <NavItem href="thrashdash">Thrash Dash</NavItem>
           <NavItem href="dreamdash">Dream Dash</NavItem>
           <NavItem href="noaadash">NOAA Dash</NavItem>
+          <NavItem href="reductdash">Reduct Dash</NavItem>
         </Nav>
        </Navbar>
 
