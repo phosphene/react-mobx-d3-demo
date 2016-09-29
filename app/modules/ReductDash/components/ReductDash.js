@@ -1,21 +1,27 @@
 import * as d3 from 'd3';
-import {crossfilter, units, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck, round} from 'dc';
+import * as dc from 'dc';
+import crossfilter from 'crossfilter';
+import {units, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck, round} from 'dc';
 import * as colorbrewer from "colorbrewer";
 import reductio from "reductio";
 //we can call export at the top of the class declaration
-export default class ReductDashDC {
+export default class ReductDash {
 
   constructor(el, props = {}) {
+    this.myCharts = ReductDash.initCharts();
     //we initiate charts in constructor
   }
 
   render() {
     //de-structure myCharts object
-
+    const {heightChart} = this.myCharts;
     d3.csv('data/jan_wv_dec_cc.csv', (error, data) => {
       //format the data
       const buoyData = this.formatData(data);
+
       const wavesx = crossfilter(buoyData);
+
+
       console.log('boo');
       // build the x dimensions
       const xDims = this.buildXDimensions(wavesx);
@@ -24,21 +30,53 @@ export default class ReductDashDC {
       //build the Y groups
       const yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
-      const {heightGroup} = yGroups;
-      /*
-       *       reductio().min(function(d) { return +d.wvht; })
-       *                 .max(true)
-       *                 .median(true)(heightGroup);
-       *        console.log(yGroups)
-       *
-       * */
+      let {heightGroup} = yGroups;
+      let reducer = reductio().sum('wvht');
+      //reducer(heightGroup);
+      console.log(heightGroup.all());
+
      //call number format
-      const numberFormat =  this.numberFormat();
+
       //dc.js Charts chained configuration
       //const reducer = reductio().count(true);
       //reducer(heightGroup);
-      console.log("foo");
-        /* dc.barChart("#height-chart") */
+
+
+        console.log("foo");
+
+      /* dc.barChart("#height-chart") */
+      heightChart
+        .width(300)
+        .height(180)
+        .margins({top: 10, right: 50, bottom: 30, left: 40})
+        .dimension(heightDim)
+        .group(heightGroup)
+        .elasticY(true)
+      // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
+        .centerBar(true)
+      // (optional) set gap between bars manually in px, :default=2
+        .gap(65)
+      // (optional) set filter brush rounding
+        .round(round.floor)
+        .x(d3.scale.linear().domain([0, 7]))
+        .renderHorizontalGridLines(true)
+      // customize the filter displayed in the control span
+        .filterPrinter(function (filters) {
+          var filter = filters[0], s = "";
+          s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
+          return s;
+        });
+
+      // Customize axis
+      heightChart.xAxis().tickFormat(
+        function (v) { return v + "met"; });
+      heightChart.yAxis().ticks(5);
+
+
+      //draw the viz!
+      renderAll();
+
+
 
 
       //draw the viz!
@@ -96,10 +134,6 @@ export default class ReductDashDC {
     return buoyData;
   }
 
-  numberFormat(){
-
-    return d3.format(".2f");
-  }
 
   buildXDimensions(xwaves){
     // create dimensions (x-axis values)

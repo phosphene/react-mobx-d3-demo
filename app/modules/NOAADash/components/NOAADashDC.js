@@ -26,7 +26,7 @@ export default class NOAADashDC {
       //de-structure they yGroups object
       const {heightGroup} = yGroups;
       //call number format
-      const numberFormat =  this.numberFormat();
+
       //dc.js Charts chained configuration
 
         /* dc.barChart("#height-chart") */
