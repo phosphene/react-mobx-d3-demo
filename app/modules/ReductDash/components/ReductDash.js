@@ -33,7 +33,7 @@ export default class ReductDash {
       //de-structure they yGroups object
       let {heightGroup} = yGroups;
       console.log(heightGroup.all());
-      let reducer = reductio().count(true).min("wvht").max(true).median(true);
+      let reducer = reductio().count(true).min('wvdp').max(true).median(true);
       reducer(heightGroup);
       console.log(heightGroup.all());
 
