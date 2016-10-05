@@ -29,8 +29,11 @@ class NOAAWrapper extends React.Component {
             <div className="container-fluid">
 
                 <div className="row">
-                    <div className="col-xs-12">
+                    <div className="col-xs-4">
                         <div id="chart-height"></div>
+                    </div>
+                    <div className="col-xs-4">
+                        <div id="chart-period"></div>
                     </div>
                </div>
             </div>
