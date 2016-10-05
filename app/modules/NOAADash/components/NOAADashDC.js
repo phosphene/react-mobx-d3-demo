@@ -26,36 +26,36 @@ export default class NOAADashDC {
       //de-structure they yGroups object
       const {heightGroup} = yGroups;
       //call number format
-
+      const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
 
         /* dc.barChart("#height-chart") */
-        heightChart
-            .width(300)
-            .height(180)
-            .margins({top: 10, right: 50, bottom: 30, left: 40})
-            .dimension(heightDim)
-            .group(heightGroup)
-            .elasticY(true)
-            // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
-            .centerBar(true)
-            // (optional) set gap between bars manually in px, :default=2
-            .gap(65)
-            // (optional) set filter brush rounding
-            .round(round.floor)
-            .x(d3.scale.linear().domain([0, 7]))
-            .renderHorizontalGridLines(true)
-            // customize the filter displayed in the control span
-            .filterPrinter(function (filters) {
-                var filter = filters[0], s = "";
-                s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
-                return s;
-        });
+    heightChart
+        .width(300)
+        .height(180)
+        .margins({top: 10, right: 50, bottom: 30, left: 40})
+        .dimension(heightDim)
+        .group(heightGroup)
+        .elasticY(true)
+        // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
+        .centerBar(true)
+        // (optional) set gap between bars manually in px, :default=2
+        .gap(65)
+        // (optional) set filter brush rounding
+        .round(round.floor)
+        .x(d3.scale.linear().domain([0, 7]))
+        .renderHorizontalGridLines(true)
+        // customize the filter displayed in the control span
+        .filterPrinter(function (filters) {
+            var filter = filters[0], s = "";
+            s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
+            return s;
+    });
 
-        // Customize axis
-        heightChart.xAxis().tickFormat(
-        function (v) { return v + "met"; });
-        heightChart.yAxis().ticks(5);
+    // Customize axis
+    heightChart.xAxis().tickFormat(
+    function (v) { return v + "met"; });
+    heightChart.yAxis().ticks(5);
 
 
       //draw the viz!
@@ -112,6 +112,10 @@ export default class NOAADashDC {
     return buoyData;
   }
 
+  numberFormat(){
+
+    return d3.format(".2f");
+  }
 
   buildXDimensions(xwaves){
     // create dimensions (x-axis values)
