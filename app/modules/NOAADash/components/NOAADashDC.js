@@ -11,52 +11,79 @@ export default class NOAADashDC {
 
   render() {
     //de-structure myCharts object
-    const {heightChart} = this.myCharts;
+    const {heightChart, periodChart} = this.myCharts;
 
     d3.csv('data/jan_wv_dec_cc.csv', (error, data) => {
-      //format the data
-      const buoyData = this.formatData(data);
-      const wavesx = crossfilter(buoyData);
-      // build the x dimensions
-      const xDims = this.buildXDimensions(wavesx);
-      //destructure the xDims object
-      const {heightDim} = xDims;
-      //build the Y groups
-      const yGroups = this.buildYGroups(wavesx, xDims);
-      //de-structure they yGroups object
-      const {heightGroup} = yGroups;
-      //call number format
-      const numberFormat =  this.numberFormat();
-      //dc.js Charts chained configuration
+        //format the data
+        const buoyData = this.formatData(data);
+        const wavesx = crossfilter(buoyData);
+        // build the x dimensions
+        const xDims = this.buildXDimensions(wavesx);
+        //destructure the xDims object
+        const {heightDim, periodDim} = xDims;
+        //build the Y groups
+        const yGroups = this.buildYGroups(wavesx, xDims);
+        //de-structure they yGroups object
+        const {heightGroup, periodGroup} = yGroups;
+        //call number format
+        const numberFormat =  this.numberFormat();
+        //dc.js Charts chained configuration
 
         /* dc.barChart("#height-chart") */
-    heightChart
-        .width(300)
-        .height(180)
-        .margins({top: 10, right: 50, bottom: 30, left: 40})
-        .dimension(heightDim)
-        .group(heightGroup)
-        .elasticY(true)
-        // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
-        .centerBar(true)
-        // (optional) set gap between bars manually in px, :default=2
-        .gap(65)
-        // (optional) set filter brush rounding
-        .round(round.floor)
-        .x(d3.scale.linear().domain([0, 7]))
-        .renderHorizontalGridLines(true)
-        // customize the filter displayed in the control span
-        .filterPrinter(function (filters) {
-            var filter = filters[0], s = "";
-            s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
-            return s;
-    });
+        heightChart
+            .width(300)
+            .height(180)
+            .margins({top: 10, right: 50, bottom: 30, left: 40})
+            .dimension(heightDim)
+            .group(heightGroup)
+            .elasticY(true)
+            // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
+            .centerBar(true)
+            // (optional) set gap between bars manually in px, :default=2
+            .gap(65)
+            // (optional) set filter brush rounding
+            .round(round.floor)
+            .x(d3.scale.linear().domain([0, 7]))
+            .renderHorizontalGridLines(true)
+            // customize the filter displayed in the control span
+            .filterPrinter(function (filters) {
+                var filter = filters[0], s = "";
+                s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
+                return s;
+        });
 
     // Customize axis
     heightChart.xAxis().tickFormat(
     function (v) { return v + "met"; });
     heightChart.yAxis().ticks(5);
 
+        //dc.barChart("#period-chart")
+        periodChart
+            .width(300)
+            .height(180)
+            .margins({top: 10, right: 50, bottom: 30, left: 40})
+            .dimension(periodDim)
+            .group(periodGroup)
+            .elasticY(true)
+            // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
+            .centerBar(true)
+            // (optional) set gap between bars manually in px, :default=2
+            .gap(45)
+            // (optional) set filter brush rounding
+            .round(round.floor)
+            .x(d3.scale.linear().domain([0, 30]))
+            .renderHorizontalGridLines(true)
+            // customize the filter displayed in the control span
+            .filterPrinter(function (filters) {
+                var filter = filters[0], s = "";
+                s += numberFormat(filter[0]) + "sec -> " + numberFormat(filter[1]) + "sec";
+                return s;
+            });
+
+        // Customize axis
+        periodChart.xAxis().tickFormat(
+            function (v) { return v + "sec"; });
+        periodChart.yAxis().ticks(5);
 
       //draw the viz!
       renderAll();
@@ -66,8 +93,9 @@ export default class NOAADashDC {
 
   static initCharts() {
     const heightChart = barChart('#chart-height');
+    const periodChart = barChart('#chart-period');
 
-    const myCharts = {heightChart}
+    const myCharts = {heightChart, periodChart}
 
 
     return myCharts;
@@ -76,10 +104,13 @@ export default class NOAADashDC {
 
   resetChart(chartName) {
 
-    let {heightChart} = this.myCharts;
+    let {heightChart, periodChart} = this.myCharts;
 
     switch (chartName) {
-      case "height-chart":
+    case "height-chart":
+        heightChart.filterAll();
+        break;
+     case "period-chart":
         heightChart.filterAll();
         break;
       default:
@@ -121,7 +152,9 @@ export default class NOAADashDC {
     // create dimensions (x-axis values)
 
     const heightDim  = xwaves.dimension(pluck("wvht"));
-    const xDims = { heightDim };
+    const periodDim  = xwaves.dimension(pluck("wvdp"));
+
+    const xDims = { heightDim, periodDim };
     return xDims;
 
   }
@@ -129,14 +162,14 @@ export default class NOAADashDC {
 
   buildYGroups(wavesx, xDims){
 
-    const {heightDim} = xDims;
+    const {heightDim, periodDim} = xDims;
 
     // create groups (y-axis values)
     //map reduce functions
     const heightGroup = heightDim.group();
+    const periodGroup = periodDim.group();
 
-    const yGroups = {heightGroup};
-
+    const yGroups = {heightGroup, periodGroup};
     return yGroups;
 
   }
