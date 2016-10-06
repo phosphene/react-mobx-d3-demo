@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import {crossfilter, units, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck, round} from 'dc';
+import {crossfilter, units, lineChart, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck, round} from 'dc';
 import * as colorbrewer from "colorbrewer";
 //we can call export at the top of the class declaration
 export default class NOAADashDC {
@@ -11,7 +11,7 @@ export default class NOAADashDC {
 
   render() {
     //de-structure myCharts object
-    const {heightChart, periodChart} = this.myCharts;
+    const {heightChart, periodChart, moveChart} = this.myCharts;
 
     d3.csv('data/jan_wv_dec_cc.csv', (error, data) => {
         //format the data
@@ -24,7 +24,7 @@ export default class NOAADashDC {
         //build the Y groups
         const yGroups = this.buildYGroups(wavesx, xDims);
         //de-structure they yGroups object
-        const {heightGroup, periodGroup} = yGroups;
+        const {heightGroup, periodGroup, monthGroup} = yGroups;
         //call number format
         const numberFormat =  this.numberFormat();
         //dc.js Charts chained configuration
@@ -85,6 +85,19 @@ export default class NOAADashDC {
             function (v) { return v + "sec"; });
         periodChart.yAxis().ticks(5);
 
+        moveChart
+            .width(960)
+            .height(100)
+            .margins({top: 10, right: 10, bottom: 20, left: 40})
+            .dimension(monthDim)
+            .group(monthGroup)
+            .transitionDuration(500)
+            .elasticY(true)
+            //.x(d3.time.scale().domain([new Date(2013, 6, 18), new Date(2013, 6, 24)])) // scale and domain of the graph
+            .x(d3.time.scale().domain(d3.extent(data, function(d) { return d.dd; })))  //use extent to auto scale the axis
+            .xAxis();
+
+
       //draw the viz!
       renderAll();
 
@@ -94,8 +107,9 @@ export default class NOAADashDC {
   static initCharts() {
     const heightChart = barChart('#chart-height');
     const periodChart = barChart('#chart-period');
+    const moveChart = lineChart('#chart-month-move');
 
-    const myCharts = {heightChart, periodChart}
+    const myCharts = {heightChart, periodChart, moveChart}
 
 
     return myCharts;
