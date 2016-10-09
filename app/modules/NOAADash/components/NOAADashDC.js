@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import {crossfilter, units, lineChart, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck, round} from 'dc';
+import {crossfilter, units, legend, lineChart, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck, round} from 'dc';
 import * as colorbrewer from "colorbrewer";
 //we can call export at the top of the class declaration
 export default class NOAADashDC {
@@ -11,6 +11,7 @@ export default class NOAADashDC {
 
   render() {
     //de-structure myCharts object
+    //const {heightChart, periodChart} = this.myCharts;
     const {heightChart, periodChart, moveChart} = this.myCharts;
 
     d3.csv('data/jan_wv_dec_cc.csv', (error, data) => {
@@ -24,10 +25,51 @@ export default class NOAADashDC {
         //build the Y groups
         const yGroups = this.buildYGroups(wavesx, xDims);
         //de-structure they yGroups object
-        const {heightGroup, periodGroup, monthGroup} = yGroups;
+        const {heightGroup, periodGroup, waveAverageHeightGroup} = yGroups;
         //call number format
         const numberFormat =  this.numberFormat();
         //dc.js Charts chained configuration
+
+        moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
+        .renderArea(true)
+        .width(990)
+        .height(200)
+        .transitionDuration(1000)
+        .margins({top: 30, right: 50, bottom: 25, left: 40})
+        .dimension(monthDim)
+        .mouseZoomable(true)
+      // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
+     //   .rangeChart(volumeChart)
+        .x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
+        .round(d3.time.month.round)
+        .xUnits(d3.time.months)
+        .elasticY(true)
+        .renderHorizontalGridLines(true)
+      //##### Legend
+
+      // Position the legend relative to the chart origin and specify items' height and separation.
+        .legend(legend().x(800).y(10).itemHeight(13).gap(5))
+        .brushOn(false)
+      // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
+      // legend.
+      // The `.valueAccessor` will be used for the base layer
+        .group(waveAverageHeightGroup, 'Monthly Index Average')
+        .valueAccessor(function (d) {
+          return d.value.avg;
+        })
+      // Stack additional layers with `.stack`. The first paramenter is a new group.
+      // The second parameter is the series name. The third is a value accessor.
+      /*  .stack(monthlyMoveGroup, 'Monthly Index Move', function (d) {
+          return d.value;
+        })
+      // Title can be called by any stack layer.
+        .title(function (d) {
+          var value = d.value.avg ? d.value.avg : d.value;
+          if (isNaN(value)) {
+            value = 0;
+          }
+          return dateFormat(d.key) + '\n' + numberFormat(value);
+        });*/
 
         /* dc.barChart("#height-chart") */
         heightChart
@@ -53,9 +95,9 @@ export default class NOAADashDC {
         });
 
     // Customize axis
-    heightChart.xAxis().tickFormat(
-    function (v) { return v + "met"; });
-    heightChart.yAxis().ticks(5);
+        heightChart.xAxis().tickFormat(
+        function (v) { return v + "met"; });
+        heightChart.yAxis().ticks(5);
 
         //dc.barChart("#period-chart")
         periodChart
@@ -81,21 +123,10 @@ export default class NOAADashDC {
             });
 
         // Customize axis
-        periodChart.xAxis().tickFormat(
-            function (v) { return v + "sec"; });
-        periodChart.yAxis().ticks(5);
+            periodChart.xAxis().tickFormat(
+                function (v) { return v + "sec"; });
+            periodChart.yAxis().ticks(5);
 
-        moveChart
-            .width(960)
-            .height(100)
-            .margins({top: 10, right: 10, bottom: 20, left: 40})
-            .dimension(monthDim)
-            .group(monthGroup)
-            .transitionDuration(500)
-            .elasticY(true)
-            //.x(d3.time.scale().domain([new Date(2013, 6, 18), new Date(2013, 6, 24)])) // scale and domain of the graph
-            .x(d3.time.scale().domain(d3.extent(data, function(d) { return d.dd; })))  //use extent to auto scale the axis
-            .xAxis();
 
 
       //draw the viz!
@@ -109,6 +140,7 @@ export default class NOAADashDC {
     const periodChart = barChart('#chart-period');
     const moveChart = lineChart('#chart-month-move');
 
+    //const myCharts = {heightChart, periodChart}
     const myCharts = {heightChart, periodChart, moveChart}
 
 
@@ -147,6 +179,7 @@ export default class NOAADashDC {
     buoyData.forEach(d=>{
         d.dd = dateFormat.parse(d.origintime);
         d.day = d3.time.day(d.dd); // pre-calculate day for better performance
+        d.week = d3.time.week(d.dd);
         d.month = d3.time.month(d.dd);
         d.year = d3.time.year(d.dd);
         d.wvdp   = d3.round(+d.wvdp,1);
@@ -183,11 +216,43 @@ export default class NOAADashDC {
     //map reduce functions
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
-    const monthGroup = monthDim.group();
+    const waveAverageHeightGroup = this.buildWaveGAH(monthDim);
 
-    const yGroups = {heightGroup, periodGroup, monthGroup};
+    const yGroups = {heightGroup, periodGroup, waveAverageHeightGroup};
     return yGroups;
 
+  }
+
+  buildWaveGAH(monthDim){
+      const waveAverageHeightGroup = monthDim.group().reduce(
+        (p,v) => {
+          ++p.sample;
+          //p.total += (v.open + v.close) / 2;
+          p.total += v.wvht * 3.2;
+          //p.avg = Math.round(p.total / p.days);
+          p.avg = Math.round(p.total / p.sample)
+          return p;
+        },
+        (p,v) => {
+          --p.sample;
+          //p.total -= (v.open + v.close) / 2;
+          p.total -= v.wvht * 3.2;
+          //p.avg = p.days ? Math.round(p.total / p.days) : 0;
+          p.avg = p.sample ? Math.round(p/total / p.sample) : 0;
+          return p;
+
+        },
+        () => {
+            return {
+              sample: 0,
+              total: 0,
+              avg: 0
+          };
+        }
+
+      );
+
+      return waveAverageHeightGroup;
   }
 
   //end of class
