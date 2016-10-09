@@ -25,7 +25,7 @@ export default class NOAADashDC {
         //build the Y groups
         const yGroups = this.buildYGroups(wavesx, xDims);
         //de-structure they yGroups object
-        const {heightGroup, periodGroup, waveAverageHeightGroup} = yGroups;
+        const {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup} = yGroups;
         //call number format
         const numberFormat =  this.numberFormat();
         //dc.js Charts chained configuration
@@ -53,17 +53,19 @@ export default class NOAADashDC {
       // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
       // legend.
       // The `.valueAccessor` will be used for the base layer
-        .group(waveAverageHeightGroup, 'Monthly Index Average')
-        .valueAccessor(function (d) {
+        .group(waveAverageHeightGroup, 'Monthly Height Average')
+        .valueAccessor((d) =>  {
+            console.log("avg " + d.value.avg);
           return d.value.avg;
         })
       // Stack additional layers with `.stack`. The first paramenter is a new group.
       // The second parameter is the series name. The third is a value accessor.
-      /*  .stack(monthlyMoveGroup, 'Monthly Index Move', function (d) {
+        .stack(waveMoveHeightGroup, 'Monthly Index Move', function (d) {
+            console.log("val " + d.value);
           return d.value;
         })
       // Title can be called by any stack layer.
-        .title(function (d) {
+      /*  .title(function (d) {
           var value = d.value.avg ? d.value.avg : d.value;
           if (isNaN(value)) {
             value = 0;
@@ -88,15 +90,16 @@ export default class NOAADashDC {
             .x(d3.scale.linear().domain([0, 7]))
             .renderHorizontalGridLines(true)
             // customize the filter displayed in the control span
-            .filterPrinter(function (filters) {
+            .filterPrinter((filters) => {
                 var filter = filters[0], s = "";
                 s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
                 return s;
         });
 
     // Customize axis
-        heightChart.xAxis().tickFormat(
-        function (v) { return v + "met"; });
+        heightChart.xAxis().tickFormat((v) => {
+            return v + "met";
+        });
         heightChart.yAxis().ticks(5);
 
         //dc.barChart("#period-chart")
@@ -176,14 +179,15 @@ export default class NOAADashDC {
     const dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
 
 
-    buoyData.forEach(d=>{
+    buoyData.forEach(d => {
         d.dd = dateFormat.parse(d.origintime);
         d.day = d3.time.day(d.dd); // pre-calculate day for better performance
         d.week = d3.time.week(d.dd);
         d.month = d3.time.month(d.dd);
         d.year = d3.time.year(d.dd);
         d.wvdp   = d3.round(+d.wvdp,1);
-        d.wvht = d3.round(+d.wvht,1);
+        //d.wvht = d3.round((+d.wvht * 3.2),1); //convert to feet
+        d.wvht = d3.round((+d.wvht * 3.2)); //convert to feet
         d.wndir = +d.wndir;
     });
 
@@ -213,12 +217,15 @@ export default class NOAADashDC {
     const {heightDim, periodDim, monthDim} = xDims;
 
     // create groups (y-axis values)
-    //map reduce functions
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
+    const waveMoveHeightGroup = monthDim.group().reduceSum((d) => {
+        return d.wvht;
+    });
+    //map reduce functions
     const waveAverageHeightGroup = this.buildWaveGAH(monthDim);
 
-    const yGroups = {heightGroup, periodGroup, waveAverageHeightGroup};
+    const yGroups = {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup};
     return yGroups;
 
   }
@@ -228,7 +235,7 @@ export default class NOAADashDC {
         (p,v) => {
           ++p.sample;
           //p.total += (v.open + v.close) / 2;
-          p.total += v.wvht * 3.2;
+          p.total += v.wvht;
           //p.avg = Math.round(p.total / p.days);
           p.avg = Math.round(p.total / p.sample)
           return p;
@@ -236,9 +243,9 @@ export default class NOAADashDC {
         (p,v) => {
           --p.sample;
           //p.total -= (v.open + v.close) / 2;
-          p.total -= v.wvht * 3.2;
+          p.total -= v.wvht;
           //p.avg = p.days ? Math.round(p.total / p.days) : 0;
-          p.avg = p.sample ? Math.round(p/total / p.sample) : 0;
+          p.avg = p.sample ? Math.round(p.total / p.sample) : 0;
           return p;
 
         },
