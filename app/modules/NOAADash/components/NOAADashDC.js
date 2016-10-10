@@ -55,17 +55,17 @@ export default class NOAADashDC {
       // The `.valueAccessor` will be used for the base layer
         .group(waveAverageHeightGroup, 'Monthly Height Average')
         .valueAccessor((d) =>  {
-            console.log("avg " + d.value.avg);
+            //console.log("avg " + d.value.avg);
           return d.value.avg;
         })
       // Stack additional layers with `.stack`. The first paramenter is a new group.
       // The second parameter is the series name. The third is a value accessor.
-        .stack(waveMoveHeightGroup, 'Monthly Index Move', function (d) {
-            console.log("val " + d.value);
+      /*  .stack(waveMoveHeightGroup, 'Monthly Index Move', function (d) {
+            //console.log("val " + d.value);
           return d.value;
         })
       // Title can be called by any stack layer.
-      /*  .title(function (d) {
+        .title(function (d) {
           var value = d.value.avg ? d.value.avg : d.value;
           if (isNaN(value)) {
             value = 0;
@@ -222,9 +222,9 @@ export default class NOAADashDC {
     const waveMoveHeightGroup = monthDim.group().reduceSum((d) => {
         return d.wvht;
     });
+    //console.log(waveMoveHeightGroup.top(3));
     //map reduce functions
     const waveAverageHeightGroup = this.buildWaveGAH(monthDim);
-
     const yGroups = {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup};
     return yGroups;
 
