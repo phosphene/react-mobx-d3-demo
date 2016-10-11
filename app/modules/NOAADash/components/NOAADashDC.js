@@ -14,7 +14,7 @@ export default class NOAADashDC {
     //const {heightChart, periodChart} = this.myCharts;
     const {heightChart, periodChart, moveChart} = this.myCharts;
 
-    d3.csv('data/jan_wv_dec_cc.csv', (error, data) => {
+    d3.csv('data/fullyear_wv_dec_cc.csv', (error, data) => {
         //format the data
         const buoyData = this.formatData(data);
         const wavesx = crossfilter(buoyData);
@@ -40,7 +40,8 @@ export default class NOAADashDC {
         .mouseZoomable(true)
       // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
      //   .rangeChart(volumeChart)
-        .x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
+        //.x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
+        .x(d3.time.scale().domain(d3.extent(data, (d) => { return d.dd; })))  //use extent to auto scale the axis
         .round(d3.time.month.round)
         .xUnits(d3.time.months)
         .elasticY(true)
