@@ -21,7 +21,7 @@ export default class NOAADashDC {
         // build the x dimensions
         const xDims = this.buildXDimensions(wavesx);
         //destructure the xDims object
-        const {heightDim, periodDim, monthDim} = xDims;
+        const {heightDim, periodDim, monthDim, windDim} = xDims;
         //build the Y groups
         const yGroups = this.buildYGroups(wavesx, xDims);
         //de-structure they yGroups object
@@ -205,8 +205,9 @@ export default class NOAADashDC {
     const heightDim  = xwaves.dimension(pluck("wvht"));
     const periodDim  = xwaves.dimension(pluck("wvdp"));
     const monthDim  = xwaves.dimension(pluck("month"));
+    const windDim  = xwaves.dimension(pluck("wndir"));
 
-    const xDims = { heightDim, periodDim, monthDim };
+    const xDims = { heightDim, periodDim, monthDim, windDim };
     return xDims;
 
   }
