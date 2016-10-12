@@ -229,9 +229,9 @@ export default class NOAADashDC {
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
     let myMonthGroup = monthDim.group();
-    let reducer = reductio().count(true).sum('wvht').avg(true);
+    let reducer = reductio().count(true).sum('wvht').avg(true).min('wvht').max(true).median(true);
     reducer(myMonthGroup);
-    //console.log(myMonthGroup.all());
+    console.log(myMonthGroup.all());
     const waveMoveHeightGroup = monthDim.group().reduceSum((d) => {
       //console.log(d.wvht);
       //console.log("hello");
