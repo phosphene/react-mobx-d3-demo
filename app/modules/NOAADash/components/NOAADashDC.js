@@ -56,7 +56,6 @@ export default class NOAADashDC {
       // The `.valueAccessor` will be used for the base layer
         .group(waveAverageHeightGroup, 'Monthly Height Average')
         .valueAccessor((d) =>  {
-            //console.log("avg " + d.value.avg);
           return d.value.avg;
         })
       // Stack additional layers with `.stack`. The first paramenter is a new group.
@@ -221,9 +220,10 @@ export default class NOAADashDC {
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
     const waveMoveHeightGroup = monthDim.group().reduceSum((d) => {
+        //console.log(d.wvht);
+        //console.log("hello");
         return d.wvht;
     });
-    //console.log(waveMoveHeightGroup.top(3));
     //map reduce functions
     const waveAverageHeightGroup = this.buildWaveGAH(monthDim);
     const yGroups = {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup};
@@ -239,6 +239,8 @@ export default class NOAADashDC {
           p.total += v.wvht;
           //p.avg = Math.round(p.total / p.days);
           p.avg = Math.round(p.total / p.sample)
+          //console.log(v);
+          //console.log(p);
           return p;
         },
         (p,v) => {
