@@ -112,6 +112,7 @@
     "react-router": "^2.6.0",
     "reductio": "^0.6.3",
     "style-loader": "^0.13.1",
+    "topojson": "^1.6.27",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
