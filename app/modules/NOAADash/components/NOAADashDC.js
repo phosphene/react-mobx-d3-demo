@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import {crossfilter, units, legend, lineChart, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck, round} from 'dc';
 import * as colorbrewer from "colorbrewer";
+import reductio from 'reductio';
 //we can call export at the top of the class declaration
 export default class NOAADashDC {
 
@@ -25,7 +26,7 @@ export default class NOAADashDC {
         //build the Y groups
         const yGroups = this.buildYGroups(wavesx, xDims);
         //de-structure they yGroups object
-        const {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup} = yGroups;
+        const {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup, myMonthGroup} = yGroups;
         //call number format
         const numberFormat =  this.numberFormat();
         //dc.js Charts chained configuration
@@ -54,7 +55,7 @@ export default class NOAADashDC {
       // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
       // legend.
       // The `.valueAccessor` will be used for the base layer
-        .group(waveAverageHeightGroup, 'Monthly Height Average')
+        .group(myMonthGroup, 'Monthly Height Average')
         .valueAccessor((d) =>  {
           return d.value.avg;
         })
@@ -219,6 +220,10 @@ export default class NOAADashDC {
     // create groups (y-axis values)
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
+    let myMonthGroup = monthDim.group();
+    let reducer = reductio().count(true).sum('wvht').avg(true);
+    reducer(myMonthGroup);
+    //console.log(myMonthGroup.all());
     const waveMoveHeightGroup = monthDim.group().reduceSum((d) => {
         //console.log(d.wvht);
         //console.log("hello");
@@ -226,7 +231,7 @@ export default class NOAADashDC {
     });
     //map reduce functions
     const waveAverageHeightGroup = this.buildWaveGAH(monthDim);
-    const yGroups = {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup};
+    const yGroups = {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup, myMonthGroup};
     return yGroups;
 
   }
