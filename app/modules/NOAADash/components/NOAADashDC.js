@@ -26,7 +26,7 @@ export default class NOAADashDC {
       //build the Y groups
       const yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
-      const {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup, myMonthGroup} = yGroups;
+      const {heightGroup, periodGroup, waveMoveHeightGroup, myMonthGroup} = yGroups;
       //call number format
       const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
@@ -100,7 +100,7 @@ export default class NOAADashDC {
   buildMoveChart(moveChart, data, monthDim, myMonthGroup){
 
     moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
-      .renderArea(true)
+      .renderArea(false)
       .width(990)
       .height(200)
       .transitionDuration(1000)
@@ -129,12 +129,12 @@ export default class NOAADashDC {
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-    /*  .stack(waveMoveHeightGroup, 'Monthly Index Move', function (d) {
+      .stack(myMonthGroup, 'Monthly Height Max', (d) => {
        //console.log("val " + d.value);
-       return d.value;
+       return d.value.max;
        })
        // Title can be called by any stack layer.
-       .title(function (d) {
+      /* .title(function (d) {
        var value = d.value.avg ? d.value.avg : d.value;
        if (isNaN(value)) {
        value = 0;
@@ -238,45 +238,11 @@ export default class NOAADashDC {
       return d.wvht;
     });
     //map reduce functions
-    const waveAverageHeightGroup = this.buildWaveGAH(monthDim);
-    const yGroups = {heightGroup, periodGroup, waveAverageHeightGroup, waveMoveHeightGroup, myMonthGroup};
+    const yGroups = {heightGroup, periodGroup, waveMoveHeightGroup, myMonthGroup};
     return yGroups;
 
   }
 
-  buildWaveGAH(monthDim){
-    const waveAverageHeightGroup = monthDim.group().reduce(
-      (p,v) => {
-          ++p.sample;
-        //p.total += (v.open + v.close) / 2;
-        p.total += v.wvht;
-        //p.avg = Math.round(p.total / p.days);
-        p.avg = Math.round(p.total / p.sample)
-        //console.log(v);
-        //console.log(p);
-        return p;
-      },
-      (p,v) => {
-          --p.sample;
-        //p.total -= (v.open + v.close) / 2;
-        p.total -= v.wvht;
-        //p.avg = p.days ? Math.round(p.total / p.days) : 0;
-        p.avg = p.sample ? Math.round(p.total / p.sample) : 0;
-        return p;
-
-      },
-      () => {
-        return {
-          sample: 0,
-          total: 0,
-          avg: 0
-        };
-      }
-
-    );
-
-    return waveAverageHeightGroup;
-  }
 
   //end of class
 }
