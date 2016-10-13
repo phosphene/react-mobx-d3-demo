@@ -100,7 +100,7 @@ export default class NOAADashDC {
   buildMoveChart(moveChart, data, monthDim, myMonthGroup){
 
     moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
-      .renderArea(false)
+      .renderArea(true)
       .width(990)
       .height(200)
       .transitionDuration(1000)
@@ -123,15 +123,15 @@ export default class NOAADashDC {
     // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
     // legend.
     // The `.valueAccessor` will be used for the base layer
-      .group(myMonthGroup, 'Monthly Height Average')
+      .group(myMonthGroup, 'Monthly Height Min')
       .valueAccessor((d) =>  {
-        return d.value.avg;
+        return d.value.min;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-      .stack(myMonthGroup, 'Monthly Height Max', (d) => {
+      .stack(myMonthGroup, 'Monthly Height Average', (d) => {
        //console.log("val " + d.value);
-       return d.value.max;
+        return d.value.avg;
        })
        // Title can be called by any stack layer.
       /* .title(function (d) {
@@ -141,6 +141,9 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
+      .stack(myMonthGroup, "Monthly Height Max", (d) => {
+        return d.value.max;
+      })
 
   }
 
@@ -231,7 +234,7 @@ export default class NOAADashDC {
     let myMonthGroup = monthDim.group();
     let reducer = reductio().count(true).sum('wvht').avg(true).min('wvht').max(true).median(true);
     reducer(myMonthGroup);
-    console.log(myMonthGroup.all());
+    //console.log(myMonthGroup.all());
     const waveMoveHeightGroup = monthDim.group().reduceSum((d) => {
       //console.log(d.wvht);
       //console.log("hello");
