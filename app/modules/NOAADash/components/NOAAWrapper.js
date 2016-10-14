@@ -41,6 +41,12 @@ class NOAAWrapper extends React.Component {
                         <div id="chart-month-move"></div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <div id="chart-period-stacked-line"></div>
+                    </div>
+                </div>
+
             </div>
            </div>
         );
