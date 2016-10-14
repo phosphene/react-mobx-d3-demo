@@ -13,7 +13,7 @@ export default class NOAADashDC {
   render() {
     //de-structure myCharts object
     //const {heightChart, periodChart} = this.myCharts;
-    const {heightChart, periodChart, moveChart, periodSLChart} = this.myCharts;
+    let {heightChart, periodChart, moveChart, periodSLChart} = this.myCharts;
 
     d3.csv('data/fullyear_wv_dec_cc.csv', (error, data) => {
       //format the data
@@ -33,8 +33,8 @@ export default class NOAADashDC {
       const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
 
-      this.buildMoveChart(moveChart, data, hMonthDim, hMonthGroup);
-      this.buildPeriodSLChart(periodSLChart, data, pMonthDim, pMonthGroup);
+      moveChart = this.buildMoveChart(moveChart, data, hMonthDim, hMonthGroup);
+      periodSLChart = this.buildPeriodSLChart(periodSLChart, data, pMonthDim, pMonthGroup);
       this.buildHeightChart(heightChart, heightDim, heightGroup);
       this.buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat);
       //draw the viz!
