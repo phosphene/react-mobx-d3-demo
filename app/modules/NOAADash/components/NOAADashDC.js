@@ -22,85 +22,93 @@ export default class NOAADashDC {
       // build the x dimensions
       const xDims = this.buildXDimensions(wavesx);
       //destructure the xDims object
-      const {heightDim, periodDim, monthDimH, monthDimP} = xDims;
+      const {heightDim, periodDim, monthDim} = xDims;
       //build the Y groups
       const yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
-      const {heightGroup, periodGroup, waveMoveHeightGroup, myMonthGroup, yourMonthGroup} = yGroups;
+      const {heightGroup, periodGroup, waveMoveHeightGroup, myMonthGroup} = yGroups;
       //console.log(myMonthGroup.all());
       //console.log(yourMonthGroup.all());
       //call number format
       const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
 
-      this.buildMoveChart(moveChart, data, monthDimH, myMonthGroup);
-      this.buildPeriodSLChart(periodSLChart, data, monthDimP, yourMonthGroup);
-
-      heightChart
-        .width(300)
-        .height(180)
-        .margins({top: 10, right: 50, bottom: 30, left: 40})
-        .dimension(heightDim)
-        .group(heightGroup)
-        .elasticY(true)
-      // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
-        .centerBar(true)
-      // (optional) set gap between bars manually in px, :default=2
-        .gap(65)
-      // (optional) set filter brush rounding
-        .round(round.floor)
-        .x(d3.scale.linear().domain([0, 7]))
-        .renderHorizontalGridLines(true)
-      // customize the filter displayed in the control span
-        .filterPrinter((filters) => {
-          var filter = filters[0], s = "";
-          s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
-          return s;
-        });
-
-      // Customize axis
-      heightChart.xAxis().tickFormat((v) => {
-        return v + "met";
-      });
-      heightChart.yAxis().ticks(5);
-
-      //dc.barChart("#period-chart")
-      periodChart
-        .width(300)
-        .height(180)
-        .margins({top: 10, right: 50, bottom: 30, left: 40})
-        .dimension(periodDim)
-        .group(periodGroup)
-        .elasticY(true)
-      // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
-        .centerBar(true)
-      // (optional) set gap between bars manually in px, :default=2
-        .gap(45)
-      // (optional) set filter brush rounding
-        .round(round.floor)
-        .x(d3.scale.linear().domain([0, 30]))
-        .renderHorizontalGridLines(true)
-      // customize the filter displayed in the control span
-        .filterPrinter(function (filters) {
-          var filter = filters[0], s = "";
-          s += numberFormat(filter[0]) + "sec -> " + numberFormat(filter[1]) + "sec";
-          return s;
-        });
-
-      // Customize axis
-      periodChart.xAxis().tickFormat(
-        function (v) { return v + "sec"; });
-      periodChart.yAxis().ticks(5);
-
-
-
+      this.buildMoveChart(moveChart, data, monthDim, myMonthGroup);
+      this.buildPeriodSLChart(periodSLChart, data, monthDim, myMonthGroup);
+      this.buildHeightChart(heightChart, heightDim, heightGroup);
+      this.buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat);
       //draw the viz!
       renderAll();
 
     });
   }
 
-  buildMoveChart(moveChart, data, monthDimH, myMonthGroup){
+
+
+buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat){
+  //dc.barChart("#period-chart")
+  periodChart
+    .width(300)
+    .height(180)
+    .margins({top: 10, right: 50, bottom: 30, left: 40})
+    .dimension(periodDim)
+    .group(periodGroup)
+    .elasticY(true)
+  // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
+    .centerBar(true)
+  // (optional) set gap between bars manually in px, :default=2
+    .gap(45)
+  // (optional) set filter brush rounding
+    .round(round.floor)
+    .x(d3.scale.linear().domain([0, 30]))
+    .renderHorizontalGridLines(true)
+  // customize the filter displayed in the control span
+    .filterPrinter(function (filters) {
+      var filter = filters[0], s = "";
+      s += numberFormat(filter[0]) + "sec -> " + numberFormat(filter[1]) + "sec";
+      return s;
+    });
+  // Customize axis
+  periodChart.xAxis().tickFormat(
+    function (v) { return v + "sec"; });
+  periodChart.yAxis().ticks(5);
+
+}
+
+
+  buildHeightChart(heightChart, heightDim, heightGroup){
+    heightChart
+      .width(300)
+      .height(180)
+      .margins({top: 10, right: 50, bottom: 30, left: 40})
+      .dimension(heightDim)
+      .group(heightGroup)
+      .elasticY(true)
+    // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
+      .centerBar(true)
+    // (optional) set gap between bars manually in px, :default=2
+      .gap(65)
+    // (optional) set filter brush rounding
+      .round(round.floor)
+      .x(d3.scale.linear().domain([0, 7]))
+      .renderHorizontalGridLines(true)
+    // customize the filter displayed in the control span
+      .filterPrinter((filters) => {
+        var filter = filters[0], s = "";
+        s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
+        return s;
+      });
+
+    // Customize axis
+    heightChart.xAxis().tickFormat((v) => {
+      return v + "met";
+    });
+    heightChart.yAxis().ticks(5);
+
+  }
+
+
+  buildMoveChart(moveChart, data, monthDim, myMonthGroup){
 
     moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
       .renderArea(true)
@@ -108,7 +116,7 @@ export default class NOAADashDC {
       .height(200)
       .transitionDuration(1000)
       .margins({top: 30, right: 50, bottom: 25, left: 40})
-      .dimension(monthDimH)
+      .dimension(monthDim)
       .mouseZoomable(true)
     // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
     //   .rangeChart(volumeChart)
@@ -122,22 +130,22 @@ export default class NOAADashDC {
 
     // Position the legend relative to the chart origin and specify items' height and separation.
       .legend(legend().x(800).y(10).itemHeight(13).gap(5))
-      .brushOn(false)
+      .brushOn(true)
     // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
     // legend.
     // The `.valueAccessor` will be used for the base layer
       .group(myMonthGroup, 'Monthly Height Min')
       .valueAccessor((d) =>  {
-        return d.value.min;
+        return d.value.height.min;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
       .stack(myMonthGroup, 'Monthly Height Average', (d) => {
-       //console.log("val " + d.value);
-        return d.value.avg;
-       })
-       // Title can be called by any stack layer.
-      /* .title(function (d) {
+        //console.log("val " + d.value);
+        return d.value.height.avg;
+      })
+    // Title can be called by any stack layer.
+    /* .title(function (d) {
        var value = d.value.avg ? d.value.avg : d.value;
        if (isNaN(value)) {
        value = 0;
@@ -145,20 +153,20 @@ export default class NOAADashDC {
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
       .stack(myMonthGroup, "Monthly Height Max", (d) => {
-        return d.value.max;
+        return d.value.height.max;
       })
-
+    // return moveChart;
   }
 
-  buildPeriodSLChart(moveChart, data, monthDimP, yourMonthGroup){
+  buildPeriodSLChart(periodSLChart, data, monthDim, myMonthGroup){
 
-    moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
+    periodSLChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
       .renderArea(true)
       .width(990)
       .height(200)
       .transitionDuration(1000)
       .margins({top: 30, right: 50, bottom: 25, left: 40})
-      .dimension(monthDimP)
+      .dimension(monthDim)
       .mouseZoomable(true)
     // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
     //   .rangeChart(volumeChart)
@@ -172,37 +180,33 @@ export default class NOAADashDC {
 
     // Position the legend relative to the chart origin and specify items' height and separation.
       .legend(legend().x(800).y(10).itemHeight(13).gap(5))
-      .brushOn(false)
+      .brushOn(true)
     // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
     // legend.
     // The `.valueAccessor` will be used for the base layer
-      .group(yourMonthGroup, 'Monthly Period Min')
+      .group(myMonthGroup, 'Monthly Period Min')
       .valueAccessor((d) =>  {
-        return d.value.min;
+        return d.value.period.min;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-      .stack(yourMonthGroup, 'Monthly Period Average', (d) => {
-       //console.log("val " + d.value);
-        return d.value.avg;
-       })
-       // Title can be called by any stack layer.
-      /* .title(function (d) {
+      .stack(myMonthGroup, 'Monthly Period Average', (d) => {
+        //console.log("val " + d.value);
+        return d.value.period.avg;
+      })
+    // Title can be called by any stack layer.
+    /* .title(function (d) {
        var value = d.value.avg ? d.value.avg : d.value;
        if (isNaN(value)) {
        value = 0;
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-      .stack(yourMonthGroup, "Monthly Period Max", (d) => {
-        return d.value.max;
+      .stack(myMonthGroup, "Monthly Period Max", (d) => {
+        return d.value.period.max;
       })
-
+    // return periodSLChart;
   }
-
-
-
-
 
 
   static initCharts() {
@@ -211,10 +215,7 @@ export default class NOAADashDC {
     const moveChart = lineChart('#chart-month-move');
     const periodSLChart = lineChart('#chart-period-stacked-line');
 
-    //const myCharts = {heightChart, periodChart}
     const myCharts = {heightChart, periodChart, moveChart, periodSLChart}
-
-
     return myCharts;
   }
 
@@ -228,7 +229,7 @@ export default class NOAADashDC {
         heightChart.filterAll();
         break;
       case "period-chart":
-        heightChart.filterAll();
+        periodChart.filterAll();
         break;
       default:
         //Statements executed when none of the values match the value of the expression
@@ -238,15 +239,10 @@ export default class NOAADashDC {
     redrawAll();
   }
 
-
-
   formatData(data){
 
     const buoyData = data;
-
     const dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
-
-
     buoyData.forEach(d => {
       d.dd = dateFormat.parse(d.origintime);
       d.day = d3.time.day(d.dd); // pre-calculate day for better performance
@@ -258,52 +254,43 @@ export default class NOAADashDC {
       d.wvht = d3.round((+d.wvht * 3.2)); //convert to feet
       d.wndir = +d.wndir;
     });
-
     return buoyData;
   }
 
   numberFormat(){
-
     return d3.format(".2f");
   }
 
   buildXDimensions(xwaves){
     // create dimensions (x-axis values)
-
     const heightDim  = xwaves.dimension(pluck("wvht"));
     const periodDim  = xwaves.dimension(pluck("wvdp"));
-    const monthDimH  = xwaves.dimension(pluck("month"));
-    const monthDimP  = xwaves.dimension(pluck("month"));
-
-    const xDims = { heightDim, periodDim, monthDimH, monthDimP };
+    const monthDim  = xwaves.dimension(pluck("month"));
+    const xDims = { heightDim, periodDim, monthDim};
     return xDims;
-
   }
 
 
   buildYGroups(wavesx, xDims){
 
-    const {heightDim, periodDim, monthDimH, monthDimP } = xDims;
+    const {heightDim, periodDim, monthDim} = xDims;
 
     // create groups (y-axis values)
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
-    let myMonthGroup = monthDimH.group();
-    let yourMonthGroup = monthDimP.group();
-    let reducerHeight = reductio().count(true).sum('wvht').avg(true).min('wvht').max(true).median(true);
-    let reducerPeriod = reductio().count(true).sum('wvdp').avg(true).min('wvdp').max(true).median(true);
-    reducerHeight(myMonthGroup);
-    reducerPeriod(yourMonthGroup);
+    let myMonthGroup = monthDim.group();
+
+    let reducer = reductio();
+    reducer.value('height').count(true).sum('wvht').avg(true).min('wvht').max(true).median(true);
+    reducer.value('period').count(true).sum('wvdp').avg(true).min('wvdp').max(true).median(true);
+    reducer(myMonthGroup);
     //console.log(myMonthGroup.all());
-    const waveMoveHeightGroup = monthDimH.group().reduceSum((d) => {
+    const waveMoveHeightGroup = monthDim.group().reduceSum((d) => {
       return d.wvht;
     });
     //map reduce functions
-    const yGroups = {heightGroup, periodGroup, waveMoveHeightGroup, myMonthGroup, yourMonthGroup};
+    let yGroups = {heightGroup, periodGroup, waveMoveHeightGroup, myMonthGroup};
     return yGroups;
-
   }
-
-
   //end of class
 }
