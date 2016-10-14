@@ -45,38 +45,39 @@ export default class NOAADashDC {
 
 
 
-buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat){
-  //dc.barChart("#period-chart")
-  periodChart
-    .width(300)
-    .height(180)
-    .margins({top: 10, right: 50, bottom: 30, left: 40})
-    .dimension(periodDim)
-    .group(periodGroup)
-    .elasticY(true)
-  // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
-    .centerBar(true)
-  // (optional) set gap between bars manually in px, :default=2
-    .gap(45)
-  // (optional) set filter brush rounding
-    .round(round.floor)
-    .x(d3.scale.linear().domain([0, 30]))
-    .renderHorizontalGridLines(true)
-  // customize the filter displayed in the control span
-    .filterPrinter(function (filters) {
-      var filter = filters[0], s = "";
-      s += numberFormat(filter[0]) + "sec -> " + numberFormat(filter[1]) + "sec";
-      return s;
-    });
-  // Customize axis
-  periodChart.xAxis().tickFormat(
-    function (v) { return v + "sec"; });
-  periodChart.yAxis().ticks(5);
+  buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat){
+    //dc.barChart("#period-chart")
+    periodChart
+      .width(300)
+      .height(180)
+      .margins({top: 10, right: 50, bottom: 30, left: 40})
+      .dimension(periodDim)
+      .group(periodGroup)
+      .elasticY(true)
+    // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
+      .centerBar(true)
+    // (optional) set gap between bars manually in px, :default=2
+      .gap(45)
+    // (optional) set filter brush rounding
+      .round(round.floor)
+      .x(d3.scale.linear().domain([0, 30]))
+      .renderHorizontalGridLines(true)
+    // customize the filter displayed in the control span
+      .filterPrinter(function (filters) {
+        var filter = filters[0], s = "";
+        s += numberFormat(filter[0]) + "sec -> " + numberFormat(filter[1]) + "sec";
+        return s;
+      });
+    // Customize axis
+    periodChart.xAxis().tickFormat(
+      function (v) { return v + "sec"; });
+    periodChart.yAxis().ticks(5);
 
-}
+  }
 
 
   buildHeightChart(heightChart, heightDim, heightGroup){
+    let numberFormat = this.numberFormat();
     heightChart
       .width(300)
       .height(180)
