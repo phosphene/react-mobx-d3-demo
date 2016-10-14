@@ -18,23 +18,23 @@ export default class NOAADashDC {
     d3.csv('data/fullyear_wv_dec_cc.csv', (error, data) => {
       //format the data
       const buoyData = this.formatData(data);
-      const wavesx = crossfilter(buoyData);
+      let wavesx = crossfilter(buoyData);
       // build the x dimensions
-      const xDims = this.buildXDimensions(wavesx);
+      let xDims = this.buildXDimensions(wavesx);
       //destructure the xDims object
-      const {heightDim, periodDim, monthDim} = xDims;
+      let {heightDim, periodDim, hMonthDim, pMonthDim} = xDims;
       //build the Y groups
-      const yGroups = this.buildYGroups(wavesx, xDims);
+      let yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
-      const {heightGroup, periodGroup, waveMoveHeightGroup, myMonthGroup} = yGroups;
+      let {heightGroup, periodGroup, hMonthGroup, pMonthGroup} = yGroups;
       //console.log(myMonthGroup.all());
       //console.log(yourMonthGroup.all());
       //call number format
       const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
 
-      this.buildMoveChart(moveChart, data, monthDim, myMonthGroup);
-      this.buildPeriodSLChart(periodSLChart, data, monthDim, myMonthGroup);
+      this.buildMoveChart(moveChart, data, hMonthDim, hMonthGroup);
+      this.buildPeriodSLChart(periodSLChart, data, pMonthDim, pMonthGroup);
       this.buildHeightChart(heightChart, heightDim, heightGroup);
       this.buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat);
       //draw the viz!
@@ -109,7 +109,7 @@ export default class NOAADashDC {
   }
 
 
-  buildMoveChart(moveChart, data, monthDim, myMonthGroup){
+  buildMoveChart(moveChart, data, monthDim, monthGroup){
 
     moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
       .renderArea(true)
@@ -131,17 +131,17 @@ export default class NOAADashDC {
 
     // Position the legend relative to the chart origin and specify items' height and separation.
       .legend(legend().x(800).y(10).itemHeight(13).gap(5))
-      .brushOn(true)
+      .brushOn(false)
     // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
     // legend.
     // The `.valueAccessor` will be used for the base layer
-      .group(myMonthGroup, 'Monthly Height Min')
+      .group(monthGroup, 'Monthly Height Min')
       .valueAccessor((d) =>  {
         return d.value.height.min;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-      .stack(myMonthGroup, 'Monthly Height Average', (d) => {
+      .stack(monthGroup, 'Monthly Height Average', (d) => {
         //console.log("val " + d.value);
         return d.value.height.avg;
       })
@@ -153,13 +153,13 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-      .stack(myMonthGroup, "Monthly Height Max", (d) => {
+      .stack(monthGroup, "Monthly Height Max", (d) => {
         return d.value.height.max;
       })
-    // return moveChart;
+   return moveChart;
   }
 
-  buildPeriodSLChart(periodSLChart, data, monthDim, myMonthGroup){
+  buildPeriodSLChart(periodSLChart, data, monthDim, monthGroup){
 
     periodSLChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
       .renderArea(true)
@@ -181,17 +181,17 @@ export default class NOAADashDC {
 
     // Position the legend relative to the chart origin and specify items' height and separation.
       .legend(legend().x(800).y(10).itemHeight(13).gap(5))
-      .brushOn(true)
+      .brushOn(false)
     // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
     // legend.
     // The `.valueAccessor` will be used for the base layer
-      .group(myMonthGroup, 'Monthly Period Min')
+      .group(monthGroup, 'Monthly Period Min')
       .valueAccessor((d) =>  {
         return d.value.period.min;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-      .stack(myMonthGroup, 'Monthly Period Average', (d) => {
+      .stack(monthGroup, 'Monthly Period Average', (d) => {
         //console.log("val " + d.value);
         return d.value.period.avg;
       })
@@ -203,10 +203,10 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-      .stack(myMonthGroup, "Monthly Period Max", (d) => {
+      .stack(monthGroup, "Monthly Period Max", (d) => {
         return d.value.period.max;
       })
-    // return periodSLChart;
+   return periodSLChart;
   }
 
 
@@ -266,31 +266,31 @@ export default class NOAADashDC {
     // create dimensions (x-axis values)
     const heightDim  = xwaves.dimension(pluck("wvht"));
     const periodDim  = xwaves.dimension(pluck("wvdp"));
-    const monthDim  = xwaves.dimension(pluck("month"));
-    const xDims = { heightDim, periodDim, monthDim};
+    const hMonthDim  = xwaves.dimension(pluck("month"));
+    const pMonthDim = xwaves.dimension(pluck("month"));
+    const xDims = { heightDim, periodDim, hMonthDim, pMonthDim};
     return xDims;
   }
 
 
   buildYGroups(wavesx, xDims){
 
-    const {heightDim, periodDim, monthDim} = xDims;
+    const {heightDim, periodDim, hMonthDim, pMonthDim} = xDims;
 
     // create groups (y-axis values)
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
-    let myMonthGroup = monthDim.group();
-
+    let hMonthGroup = hMonthDim.group();
+    let pMonthGroup = pMonthDim.group();
     let reducer = reductio();
     reducer.value('height').count(true).sum('wvht').avg(true).min('wvht').max(true).median(true);
     reducer.value('period').count(true).sum('wvdp').avg(true).min('wvdp').max(true).median(true);
-    reducer(myMonthGroup);
+    reducer(hMonthGroup);
+    reducer(pMonthGroup);
+
     //console.log(myMonthGroup.all());
-    const waveMoveHeightGroup = monthDim.group().reduceSum((d) => {
-      return d.wvht;
-    });
-    //map reduce functions
-    let yGroups = {heightGroup, periodGroup, waveMoveHeightGroup, myMonthGroup};
+       //map reduce functions
+    let yGroups = {heightGroup, periodGroup, hMonthGroup, pMonthGroup};
     return yGroups;
   }
   //end of class
