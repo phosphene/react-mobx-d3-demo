@@ -137,14 +137,14 @@ export default class NOAADashDC {
     // The `.valueAccessor` will be used for the base layer
       .group(monthGroup, 'Monthly Height Min')
       .valueAccessor((d) =>  {
-        return d.value.height.count;
+        return d.value.min;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-/*      .stack(monthGroup, 'Monthly Height Average', (d) => {
+      .stack(monthGroup, 'Monthly Height Average', (d) => {
         //console.log("val " + d.value);
-        return d.value.height.avg;
-      })*/
+        return d.value.avg;
+      })
     // Title can be called by any stack layer.
     /* .title(function (d) {
        var value = d.value.avg ? d.value.avg : d.value;
@@ -153,9 +153,9 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-/*      .stack(monthGroup, "Monthly Height Max", (d) => {
-        return d.value.height.max;
-      })*/
+      .stack(monthGroup, "Monthly Height Max", (d) => {
+        return d.value.max;
+      })
    return moveChart;
   }
 
@@ -187,14 +187,14 @@ export default class NOAADashDC {
     // The `.valueAccessor` will be used for the base layer
       .group(monthGroup, 'Monthly Period Min')
       .valueAccessor((d) =>  {
-        return d.value.period.count;
+        return d.value.min;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-/*      .stack(monthGroup, 'Monthly Period Average', (d) => {
+      .stack(monthGroup, 'Monthly Period Average', (d) => {
         //console.log("val " + d.value);
-        return d.value.period.avg;
-      })*/
+        return d.value.avg;
+      })
     // Title can be called by any stack layer.
     /* .title(function (d) {
        var value = d.value.avg ? d.value.avg : d.value;
@@ -203,9 +203,9 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-/*      .stack(monthGroup, "Monthly Period Max", (d) => {
-        return d.value.period.max;
-      })*/
+      .stack(monthGroup, "Monthly Period Max", (d) => {
+        return d.value.max;
+      })
    return periodSLChart;
   }
 
@@ -251,8 +251,8 @@ export default class NOAADashDC {
       d.month = d3.time.month(d.dd);
       d.year = d3.time.year(d.dd);
       d.wvdp   = d3.round(+d.wvdp,1);
-      //d.wvht = d3.round((+d.wvht * 3.2),1); //convert to feet
-      d.wvht = d3.round((+d.wvht * 3.2)); //convert to feet
+
+      d.wvht = d3.round(+d.wvht,1); //keep in meters
       d.wndir = +d.wndir;
     });
     return buoyData;
@@ -281,15 +281,27 @@ export default class NOAADashDC {
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
     let hMonthGroup = hMonthDim.group();
+    let aMonthGroup = pMonthDim.group();
     let pMonthGroup = pMonthDim.group();
-    let reducer = reductio();
-    reducer.value('height').count(true).sum('wvht').avg(true).min('wvht').max(true).median(true);
-    reducer.value('period').count(true).sum('wvdp').avg(true).min('wvdp').max(true).median(true);
-    reducer(hMonthGroup);
-    reducer(pMonthGroup);
+    let hReducer = reductio();
+    let pReducer = reductio();
 
-    //console.log(myMonthGroup.all());
-       //map reduce functions
+    hReducer.filter( d => { return d.wvht !== null && d.wvht !== undefined && !isNaN(d.wvht);})
+           .count(true)
+           .sum('wvht').avg(true).min('wvht')
+           .max(true);
+
+    pReducer.filter( d => { return d.wvdp !== null && d.wvdp !== undefined && !isNaN(d.wvdp);})
+           .count(true)
+           .sum('wvdp').avg(true).min('wvdp')
+           .max(true);
+
+    hReducer(hMonthGroup);
+    pReducer(pMonthGroup);
+
+
+    console.log(hMonthGroup.all());
+    //map reduce functions
     let yGroups = {heightGroup, periodGroup, hMonthGroup, pMonthGroup};
     return yGroups;
   }
