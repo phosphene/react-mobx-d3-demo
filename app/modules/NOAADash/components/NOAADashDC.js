@@ -137,18 +137,14 @@ export default class NOAADashDC {
     // The `.valueAccessor` will be used for the base layer
       .group(monthGroup, 'Monthly Height Min')
       .valueAccessor((d) =>  {
-          //console.log(d.value.height.count + '  ' + d.value.height.avg);
-          let avg = d.value.height.count ? d.value.height.avg : 0;
-          //console.log(avg);
-        //return d.value.height.count;
-        return avg;
+          return d.value.height.count ? d.value.height.min : 0;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-/*      .stack(monthGroup, 'Monthly Height Average', (d) => {
+      .stack(monthGroup, 'Monthly Height Average', (d) => {
         //console.log("val " + d.value);
-        return d.value.height.avg;
-      })*/
+          return d.value.height.count ? d.value.height.avg : 0;
+      })
     // Title can be called by any stack layer.
     /* .title(function (d) {
        var value = d.value.avg ? d.value.avg : d.value;
@@ -157,9 +153,9 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-/*      .stack(monthGroup, "Monthly Height Max", (d) => {
-        return d.value.height.max;
-      })*/
+      .stack(monthGroup, "Monthly Height Max", (d) => {
+          return d.value.height.count ? d.value.height.max : 0;
+      })
    return moveChart;
   }
 
@@ -191,17 +187,16 @@ export default class NOAADashDC {
     // The `.valueAccessor` will be used for the base layer
       .group(monthGroup, 'Monthly Period Min')
       .valueAccessor((d) =>  {
-          let avg = d.value.period.count ? d.value.period.avg : 0;
-          console.log(avg);
+          return d.value.period.count ? d.value.period.min : 0;
         //return d.value.period.count;
-        return avg;
+        //return min;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-/*      .stack(monthGroup, 'Monthly Period Average', (d) => {
+      .stack(monthGroup, 'Monthly Period Average', (d) => {
         //console.log("val " + d.value);
-        return d.value.period.avg;
-      })*/
+        return d.value.period.count ? d.value.period.avg : 0;
+      })
     // Title can be called by any stack layer.
     /* .title(function (d) {
        var value = d.value.avg ? d.value.avg : d.value;
@@ -210,9 +205,9 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-/*      .stack(monthGroup, "Monthly Period Max", (d) => {
-        return d.value.period.max;
-      })*/
+      .stack(monthGroup, "Monthly Period Max", (d) => {
+        return d.value.period.count ? d.value.period.max : 0;
+      })
    return periodSLChart;
   }
 
