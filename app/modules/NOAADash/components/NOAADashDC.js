@@ -138,13 +138,13 @@ export default class NOAADashDC {
       .valueAccessor((d) =>  {
           //console.log(d.value.height.count);
           //console.log(d.value.[dimension].count);
-          return d.value.height.count ? d.value.height.min : 0;
+          return d.value.count ? d.value.min : 0;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
       .stack(group, 'Monthly Height Average', (d) => {
         //console.log("val " + d.value);
-          return d.value.height.count ? d.value.height.avg : 0;
+          return d.value.count ? d.value.avg : 0;
       })
     // Title can be called by any stack layer.
     /* .title(function (d) {
@@ -155,7 +155,7 @@ export default class NOAADashDC {
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
       .stack(group, "Monthly Height Max", (d) => {
-          return d.value.height.count ? d.value.height.max : 0;
+          return d.value.count ? d.value.max : 0;
       })
    return chart;
   }
@@ -233,11 +233,12 @@ export default class NOAADashDC {
     const periodGroup = periodDim.group();
     let hMonthGroup = hMonthDim.group();
     let pMonthGroup = pMonthDim.group();
-    let reducer = reductio();
-    reducer.value('height').count(true).sum('wvht').avg(true).min('wvht').max(true).median(true);
-    reducer.value('period').count(true).sum('wvdp').avg(true).min('wvdp').max(true).median(true);
-    reducer(hMonthGroup);
-    reducer(pMonthGroup);
+    let hReducer = reductio();
+    let pReducer = reductio();
+    hReducer.count(true).sum('wvht').avg(true).min('wvht').max(true).median(true);
+    pReducer.count(true).sum('wvdp').avg(true).min('wvdp').max(true).median(true);
+    hReducer(hMonthGroup);
+    pReducer(pMonthGroup);
 
     //console.log(myMonthGroup.all());
        //map reduce functions
