@@ -136,7 +136,8 @@ export default class NOAADashDC {
     // The `.valueAccessor` will be used for the base layer
       .group(group, 'Monthly Height Min')
       .valueAccessor((d) =>  {
-          return d.value.height.count ? d.value.height.min : 0;
+          //console.log(d.value.[dimension].count);
+          return d.value.[dimension].count ? d.value.[dimension].min : 0;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
