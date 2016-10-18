@@ -33,8 +33,8 @@ export default class NOAADashDC {
       const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
 
-      moveChart = this.buildMoveChart(moveChart, data, hMonthDim, hMonthGroup);
-      periodSLChart = this.buildPeriodSLChart(periodSLChart, data, pMonthDim, pMonthGroup);
+      moveChart = this.buildMoveChart(moveChart, data, hMonthDim, hMonthGroup, periodSLChart);
+      periodSLChart = this.buildPeriodSLChart(periodSLChart, data, pMonthDim, hMonthGroup, moveChart);
       this.buildHeightChart(heightChart, heightDim, heightGroup);
       this.buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat);
       //draw the viz!
@@ -109,8 +109,7 @@ export default class NOAADashDC {
   }
 
 
-  buildMoveChart(moveChart, data, monthDim, monthGroup){
-
+  buildMoveChart(moveChart, data, monthDim, monthGroup, rangeChart){
     moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
       .renderArea(true)
       .width(990)
@@ -120,7 +119,7 @@ export default class NOAADashDC {
       .dimension(monthDim)
       .mouseZoomable(true)
     // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
-    //   .rangeChart(volumeChart)
+      .rangeChart(rangeChart)
     //.x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
       .x(d3.time.scale().domain(d3.extent(data, (d) => { return d.dd; })))  //use extent to auto scale the axis
       .round(d3.time.month.round)
@@ -159,7 +158,7 @@ export default class NOAADashDC {
    return moveChart;
   }
 
-  buildPeriodSLChart(periodSLChart, data, monthDim, monthGroup){
+  buildPeriodSLChart(periodSLChart, data, monthDim, monthGroup, rangeChart){
 
     periodSLChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
       .renderArea(true)
@@ -170,7 +169,7 @@ export default class NOAADashDC {
       .dimension(monthDim)
       .mouseZoomable(true)
     // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
-    //   .rangeChart(volumeChart)
+      .rangeChart(rangeChart)
     //.x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
       .x(d3.time.scale().domain(d3.extent(data, (d) => { return d.dd; })))  //use extent to auto scale the axis
       .round(d3.time.month.round)
