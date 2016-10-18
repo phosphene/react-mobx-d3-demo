@@ -13,7 +13,7 @@ export default class NOAADashDC {
   render() {
     //de-structure myCharts object
     //const {heightChart, periodChart} = this.myCharts;
-    let {heightChart, periodChart, moveChart, periodSLChart} = this.myCharts;
+    let {heightChart, periodChart, heightSLChart, periodSLChart} = this.myCharts;
 
     d3.csv('data/fullyear_wv_dec_cc.csv', (error, data) => {
       //format the data
@@ -33,8 +33,8 @@ export default class NOAADashDC {
       const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
 
-      moveChart = this.buildMoveChart(moveChart, data, hMonthDim, hMonthGroup, periodSLChart);
-      periodSLChart = this.buildPeriodSLChart(periodSLChart, data, pMonthDim, hMonthGroup, moveChart);
+      heightSLChart = this.buildSLChart(heightSLChart, data, hMonthDim, hMonthGroup, periodSLChart, 'height');
+      periodSLChart = this.buildSLChart(periodSLChart, data, pMonthDim, pMonthGroup, heightSLChart, 'period');
       this.buildHeightChart(heightChart, heightDim, heightGroup);
       this.buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat);
       //draw the viz!
@@ -109,17 +109,17 @@ export default class NOAADashDC {
   }
 
 
-  buildMoveChart(moveChart, data, monthDim, monthGroup, rangeChart){
-    moveChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
+  buildSLChart(chart, data, dim, group, range, dimension){
+    chart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
       .renderArea(true)
       .width(990)
       .height(200)
       .transitionDuration(1000)
       .margins({top: 30, right: 50, bottom: 25, left: 40})
-      .dimension(monthDim)
+      .dimension(dim)
       .mouseZoomable(true)
     // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
-      .rangeChart(rangeChart)
+      .rangeChart(range)
     //.x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
       .x(d3.time.scale().domain(d3.extent(data, (d) => { return d.dd; })))  //use extent to auto scale the axis
       .round(d3.time.month.round)
@@ -134,13 +134,13 @@ export default class NOAADashDC {
     // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
     // legend.
     // The `.valueAccessor` will be used for the base layer
-      .group(monthGroup, 'Monthly Height Min')
+      .group(group, 'Monthly Height Min')
       .valueAccessor((d) =>  {
           return d.value.height.count ? d.value.height.min : 0;
       })
     // Stack additional layers with `.stack`. The first paramenter is a new group.
     // The second parameter is the series name. The third is a value accessor.
-      .stack(monthGroup, 'Monthly Height Average', (d) => {
+      .stack(group, 'Monthly Height Average', (d) => {
         //console.log("val " + d.value);
           return d.value.height.count ? d.value.height.avg : 0;
       })
@@ -152,72 +152,20 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-      .stack(monthGroup, "Monthly Height Max", (d) => {
+      .stack(group, "Monthly Height Max", (d) => {
           return d.value.height.count ? d.value.height.max : 0;
       })
-   return moveChart;
-  }
-
-  buildPeriodSLChart(periodSLChart, data, monthDim, monthGroup, rangeChart){
-
-    periodSLChart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
-      .renderArea(true)
-      .width(990)
-      .height(200)
-      .transitionDuration(1000)
-      .margins({top: 30, right: 50, bottom: 25, left: 40})
-      .dimension(monthDim)
-      .mouseZoomable(true)
-    // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
-      .rangeChart(rangeChart)
-    //.x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
-      .x(d3.time.scale().domain(d3.extent(data, (d) => { return d.dd; })))  //use extent to auto scale the axis
-      .round(d3.time.month.round)
-      .xUnits(d3.time.months)
-      .elasticY(true)
-      .renderHorizontalGridLines(true)
-    //##### Legend
-
-    // Position the legend relative to the chart origin and specify items' height and separation.
-      .legend(legend().x(800).y(10).itemHeight(13).gap(5))
-      .brushOn(false)
-    // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
-    // legend.
-    // The `.valueAccessor` will be used for the base layer
-      .group(monthGroup, 'Monthly Period Min')
-      .valueAccessor((d) =>  {
-          return d.value.period.count ? d.value.period.min : 0;
-        //return d.value.period.count;
-        //return min;
-      })
-    // Stack additional layers with `.stack`. The first paramenter is a new group.
-    // The second parameter is the series name. The third is a value accessor.
-      .stack(monthGroup, 'Monthly Period Average', (d) => {
-        //console.log("val " + d.value);
-        return d.value.period.count ? d.value.period.avg : 0;
-      })
-    // Title can be called by any stack layer.
-    /* .title(function (d) {
-       var value = d.value.avg ? d.value.avg : d.value;
-       if (isNaN(value)) {
-       value = 0;
-       }
-       return dateFormat(d.key) + '\n' + numberFormat(value);
-       });*/
-      .stack(monthGroup, "Monthly Period Max", (d) => {
-        return d.value.period.count ? d.value.period.max : 0;
-      })
-   return periodSLChart;
+   return chart;
   }
 
 
   static initCharts() {
     const heightChart = barChart('#chart-height');
     const periodChart = barChart('#chart-period');
-    const moveChart = lineChart('#chart-month-move');
+    const heightSLChart = lineChart('#chart-month-move');
     const periodSLChart = lineChart('#chart-period-stacked-line');
 
-    const myCharts = {heightChart, periodChart, moveChart, periodSLChart}
+    const myCharts = {heightChart, periodChart, heightSLChart, periodSLChart}
     return myCharts;
   }
 
