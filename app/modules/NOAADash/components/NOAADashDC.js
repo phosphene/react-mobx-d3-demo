@@ -22,19 +22,17 @@ export default class NOAADashDC {
       // build the x dimensions
       let xDims = this.buildXDimensions(wavesx);
       //destructure the xDims object
-      let {heightDim, periodDim, hMonthDim, pMonthDim} = xDims;
+      let {heightDim, periodDim, monthDim} = xDims;
       //build the Y groups
       let yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
       let {heightGroup, periodGroup, hMonthGroup, pMonthGroup} = yGroups;
-      //console.log(myMonthGroup.all());
-      //console.log(yourMonthGroup.all());
       //call number format
       const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
 
-      heightSLChart = this.buildSLChart(heightSLChart, data, hMonthDim, hMonthGroup, periodSLChart, 'height');
-      periodSLChart = this.buildSLChart(periodSLChart, data, pMonthDim, pMonthGroup, heightSLChart, 'period');
+      heightSLChart = this.buildSLChart(heightSLChart, data, monthDim, hMonthGroup, periodSLChart, 'Height');
+      periodSLChart = this.buildSLChart(periodSLChart, data, monthDim, pMonthGroup, heightSLChart, 'Period');
       this.buildHeightChart(heightChart, heightDim, heightGroup);
       this.buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat);
       //draw the viz!
@@ -110,7 +108,7 @@ export default class NOAADashDC {
 
 
   buildSLChart(chart, data, dim, group, range, dimension){
-    chart /* dc.lineChart('#monthly-move-chart', 'chartGroup') */
+    chart
       .renderArea(true)
       .width(990)
       .height(200)
@@ -118,7 +116,6 @@ export default class NOAADashDC {
       .margins({top: 30, right: 50, bottom: 25, left: 40})
       .dimension(dim)
       .mouseZoomable(true)
-    // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
       .rangeChart(range)
     //.x(d3.time.scale().domain([new Date(2004, 0, 1), new Date(2012, 11, 31)]))
       .x(d3.time.scale().domain(d3.extent(data, (d) => { return d.dd; })))  //use extent to auto scale the axis
@@ -126,24 +123,13 @@ export default class NOAADashDC {
       .xUnits(d3.time.months)
       .elasticY(true)
       .renderHorizontalGridLines(true)
-    //##### Legend
-
-    // Position the legend relative to the chart origin and specify items' height and separation.
-      .legend(legend().x(800).y(10).itemHeight(13).gap(5))
+      .legend(legend().x(800).y(5).itemHeight(5).gap(10))
       .brushOn(false)
-    // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
-    // legend.
-    // The `.valueAccessor` will be used for the base layer
-      .group(group, 'Monthly Height Min')
+      .group(group, 'Monthly '+dimension+' Min')
       .valueAccessor((d) =>  {
-          //console.log(d.value.height.count);
-          //console.log(d.value.[dimension].count);
           return d.value.count ? d.value.min : 0;
       })
-    // Stack additional layers with `.stack`. The first paramenter is a new group.
-    // The second parameter is the series name. The third is a value accessor.
-      .stack(group, 'Monthly Height Average', (d) => {
-        //console.log("val " + d.value);
+      .stack(group, 'Monthly '+dimension+' Average', (d) => {
           return d.value.count ? d.value.avg : 0;
       })
     // Title can be called by any stack layer.
@@ -154,7 +140,7 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-      .stack(group, "Monthly Height Max", (d) => {
+      .stack(group, 'Monthly '+dimension+' Max', (d) => {
           return d.value.count ? d.value.max : 0;
       })
    return chart;
@@ -166,8 +152,7 @@ export default class NOAADashDC {
     const periodChart = barChart('#chart-period');
     const heightSLChart = lineChart('#chart-month-move');
     const periodSLChart = lineChart('#chart-period-stacked-line');
-
-    const myCharts = {heightChart, periodChart, heightSLChart, periodSLChart}
+    const myCharts = {heightChart, periodChart, heightSLChart, periodSLChart};
     return myCharts;
   }
 
@@ -192,7 +177,6 @@ export default class NOAADashDC {
   }
 
   formatData(data){
-
     const buoyData = data;
     const dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
     buoyData.forEach(d => {
@@ -202,7 +186,6 @@ export default class NOAADashDC {
       d.month = d3.time.month(d.dd);
       d.year = d3.time.year(d.dd);
       d.wvdp   = d3.round(+d.wvdp,1);
-      //d.wvht = d3.round((+d.wvht * 3.2),1); //convert to feet
       d.wvht = d3.round((+d.wvht * 3.2)); //convert to feet
       d.wndir = +d.wndir;
     });
@@ -214,34 +197,26 @@ export default class NOAADashDC {
   }
 
   buildXDimensions(xwaves){
-    // create dimensions (x-axis values)
     const heightDim  = xwaves.dimension(pluck("wvht"));
     const periodDim  = xwaves.dimension(pluck("wvdp"));
-    const hMonthDim  = xwaves.dimension(pluck("month"));
-    const pMonthDim = xwaves.dimension(pluck("month"));
-    const xDims = { heightDim, periodDim, hMonthDim, pMonthDim};
+    const monthDim  = xwaves.dimension(pluck("month"));
+    const xDims = { heightDim, periodDim, monthDim};
     return xDims;
   }
 
 
   buildYGroups(wavesx, xDims){
-
-    const {heightDim, periodDim, hMonthDim, pMonthDim} = xDims;
-
-    // create groups (y-axis values)
+    const {heightDim, periodDim, monthDim} = xDims;
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
-    let hMonthGroup = hMonthDim.group();
-    let pMonthGroup = pMonthDim.group();
+    let hMonthGroup = monthDim.group();
+    let pMonthGroup = monthDim.group();
     let hReducer = reductio();
     let pReducer = reductio();
     hReducer.count(true).sum('wvht').avg(true).min('wvht').max(true).median(true);
     pReducer.count(true).sum('wvdp').avg(true).min('wvdp').max(true).median(true);
     hReducer(hMonthGroup);
     pReducer(pMonthGroup);
-
-    //console.log(myMonthGroup.all());
-       //map reduce functions
     let yGroups = {heightGroup, periodGroup, hMonthGroup, pMonthGroup};
     return yGroups;
   }
