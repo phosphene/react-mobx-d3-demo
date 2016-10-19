@@ -33,24 +33,22 @@ export default class NOAADashDC {
 
       heightSLChart = this.buildSLChart(heightSLChart, data, monthDim, hMonthGroup, periodSLChart, 'Height');
       periodSLChart = this.buildSLChart(periodSLChart, data, monthDim, pMonthGroup, heightSLChart, 'Period');
-      this.buildHeightChart(heightChart, heightDim, heightGroup);
-      this.buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat);
+      heightChart = this.buildBarChart(heightChart, heightDim, heightGroup, numberFormat, 'ft');
+      periodChart = this.buildBarChart(periodChart, periodDim, periodGroup, numberFormat, 'sec');
       //draw the viz!
       renderAll();
 
     });
   }
 
-
-
-  buildPeriodChart(periodChart, periodDim, periodGroup, numberFormat){
+  buildBarChart(chart, dim, group, format, metric){
     //dc.barChart("#period-chart")
-    periodChart
+    chart
       .width(300)
       .height(180)
       .margins({top: 10, right: 50, bottom: 30, left: 40})
-      .dimension(periodDim)
-      .group(periodGroup)
+      .dimension(dim)
+      .group(group)
       .elasticY(true)
     // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
       .centerBar(true)
@@ -61,51 +59,17 @@ export default class NOAADashDC {
       .x(d3.scale.linear().domain([0, 30]))
       .renderHorizontalGridLines(true)
     // customize the filter displayed in the control span
-      .filterPrinter(function (filters) {
+    /*  .filterPrinter(function (filters) {
         var filter = filters[0], s = "";
-        s += numberFormat(filter[0]) + "sec -> " + numberFormat(filter[1]) + "sec";
+        s += format(filter[0]) + "sec" + format(filter[1]) + "sec";
         return s;
-      });
+      });*/
     // Customize axis
-    periodChart.xAxis().tickFormat(
-      function (v) { return v + "sec"; });
-    periodChart.yAxis().ticks(5);
-
+    chart.xAxis().tickFormat(
+      (v) => {return v +" "+metric;});
+    chart.yAxis().ticks(5);
+    return chart;
   }
-
-
-  buildHeightChart(heightChart, heightDim, heightGroup){
-    let numberFormat = this.numberFormat();
-    heightChart
-      .width(300)
-      .height(180)
-      .margins({top: 10, right: 50, bottom: 30, left: 40})
-      .dimension(heightDim)
-      .group(heightGroup)
-      .elasticY(true)
-    // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
-      .centerBar(true)
-    // (optional) set gap between bars manually in px, :default=2
-      .gap(65)
-    // (optional) set filter brush rounding
-      .round(round.floor)
-      .x(d3.scale.linear().domain([0, 7]))
-      .renderHorizontalGridLines(true)
-    // customize the filter displayed in the control span
-      .filterPrinter((filters) => {
-        var filter = filters[0], s = "";
-        s += numberFormat(filter[0]) + "met -> " + numberFormat(filter[1]) + "met";
-        return s;
-      });
-
-    // Customize axis
-    heightChart.xAxis().tickFormat((v) => {
-      return v + "met";
-    });
-    heightChart.yAxis().ticks(5);
-
-  }
-
 
   buildSLChart(chart, data, dim, group, range, dimension){
     chart
@@ -146,7 +110,6 @@ export default class NOAADashDC {
    return chart;
   }
 
-
   static initCharts() {
     const heightChart = barChart('#chart-height');
     const periodChart = barChart('#chart-period');
@@ -155,7 +118,6 @@ export default class NOAADashDC {
     const myCharts = {heightChart, periodChart, heightSLChart, periodSLChart};
     return myCharts;
   }
-
 
   resetChart(chartName) {
 
