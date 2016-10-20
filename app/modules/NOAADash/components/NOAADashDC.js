@@ -22,11 +22,11 @@ export default class NOAADashDC {
       // build the x dimensions
       let xDims = this.buildXDimensions(wavesx);
       //destructure the xDims object
-      let {heightDim, periodDim, monthDim} = xDims;
+      let {heightDim, periodDim, monthDim, windDim} = xDims;
       //build the Y groups
       let yGroups = this.buildYGroups(wavesx, xDims);
       //de-structure they yGroups object
-      let {heightGroup, periodGroup, hMonthGroup, pMonthGroup} = yGroups;
+      let {heightGroup, periodGroup, hMonthGroup, pMonthGroup, windGroup} = yGroups;
       //call number format
       const numberFormat =  this.numberFormat();
       //dc.js Charts chained configuration
@@ -111,24 +111,30 @@ export default class NOAADashDC {
   }
 
   static initCharts() {
-    const heightChart = barChart('#chart-height');
-    const periodChart = barChart('#chart-period');
-    const heightSLChart = lineChart('#chart-month-move');
-    const periodSLChart = lineChart('#chart-period-stacked-line');
+    const heightChart = barChart('#chart-bar-height');
+    const periodChart = barChart('#chart-bar-period');
+    const heightSLChart = lineChart('#chart-stacked-line-height');
+    const periodSLChart = lineChart('#chart-stacked-line-period');
     const myCharts = {heightChart, periodChart, heightSLChart, periodSLChart};
     return myCharts;
   }
 
   resetChart(chartName) {
 
-    let {heightChart, periodChart} = this.myCharts;
+    let {heightChart, periodChart, heightSLChart, periodSLChart} = this.myCharts;
 
     switch (chartName) {
-      case "height-chart":
+      case "chart-bar-height":
         heightChart.filterAll();
         break;
-      case "period-chart":
+      case "chart-bar-period":
         periodChart.filterAll();
+        break;
+      case "chart-stacked-line-height":
+        heightSLChart.filterAll();
+        break;
+      case "chart-stacked-line-period":
+        periodSLChart.filterAll();
         break;
       default:
         //Statements executed when none of the values match the value of the expression
@@ -162,15 +168,17 @@ export default class NOAADashDC {
     const heightDim  = xwaves.dimension(pluck("wvht"));
     const periodDim  = xwaves.dimension(pluck("wvdp"));
     const monthDim  = xwaves.dimension(pluck("month"));
-    const xDims = { heightDim, periodDim, monthDim};
+    const windDim  = xwaves.dimension(pluck("wndir"));
+    const xDims = {heightDim, periodDim, monthDim, windDim};
     return xDims;
   }
 
 
   buildYGroups(wavesx, xDims){
-    const {heightDim, periodDim, monthDim} = xDims;
+    const {heightDim, periodDim, monthDim, windDim} = xDims;
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
+    const windGroup = windDim.group();
     let hMonthGroup = monthDim.group();
     let pMonthGroup = monthDim.group();
     let hReducer = reductio();
@@ -179,7 +187,7 @@ export default class NOAADashDC {
     pReducer.count(true).sum('wvdp').avg(true).min('wvdp').max(true).median(true);
     hReducer(hMonthGroup);
     pReducer(pMonthGroup);
-    let yGroups = {heightGroup, periodGroup, hMonthGroup, pMonthGroup};
+    let yGroups = {heightGroup, periodGroup, hMonthGroup, pMonthGroup, windGroup};
     return yGroups;
   }
   //end of class

@@ -30,20 +30,28 @@ class NOAAWrapper extends React.Component {
 
                 <div className="row">
                     <div className="col-xs-4">
-                        <div id="chart-height"></div>
+                        <div id="chart-bar-height">
+                            <a className="reset" onClick={()=>clickReset("chart-bar-height")} style={cursorStyle}> reset</a>
+                        </div>
                     </div>
                     <div className="col-xs-4">
-                        <div id="chart-period"></div>
+                        <div id="chart-bar-period">
+                            <a className="reset" onClick={()=>clickReset("chart-bar-period")} style={cursorStyle}> reset</a>
+                        </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div id="chart-month-move"></div>
+                        <div id="chart-stacked-line-height">
+                            <a className="reset" onClick={()=>clickReset("chart-stacked-line-height")} style={cursorStyle}> reset</a>
+                        </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div id="chart-period-stacked-line"></div>
+                        <div id="chart-stacked-line-period">
+                            <a className="reset" onClick={()=>clickReset("chart-stacked-line-period")} style={cursorStyle}> reset</a>
+                        </div>
                     </div>
                 </div>
 
