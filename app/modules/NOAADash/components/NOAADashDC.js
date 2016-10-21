@@ -135,18 +135,20 @@ export default class NOAADashDC {
     const heightSLChart = lineChart('#chart-stacked-line-height');
     const periodSLChart = lineChart('#chart-stacked-line-period');
     const windPieChart = pieChart('#chart-pie-wind');
-    console.log(windPieChart);
     const myCharts = {heightChart, periodChart, heightSLChart, periodSLChart, windPieChart};
     return myCharts;
   }
 
   resetChart(chartName) {
 
-    let {heightChart, periodChart, heightSLChart, periodSLChart} = this.myCharts;
+    let {heightChart, windPieChart, periodChart, heightSLChart, periodSLChart} = this.myCharts;
 
     switch (chartName) {
       case "chart-bar-height":
         heightChart.filterAll();
+        break;
+      case "chart-pie-wind":
+        windPieChart.filterAll();
         break;
       case "chart-bar-period":
         periodChart.filterAll();
@@ -205,6 +207,7 @@ export default class NOAADashDC {
     const heightGroup = heightDim.group();
     const periodGroup = periodDim.group();
     const windGroup = windDim.group();
+    //console.log(windGroup.all());
     let hMonthGroup = monthDim.group();
     let pMonthGroup = monthDim.group();
     let hReducer = reductio();

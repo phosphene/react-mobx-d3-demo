@@ -35,6 +35,11 @@ class NOAAWrapper extends React.Component {
                         </div>
                     </div>
                     <div className="col-xs-4">
+                        <div id="chart-pie-wind">
+                            <a className="reset" onClick={()=>clickReset("chart-pie-wind")} style={cursorStyle}> reset</a>
+                        </div>
+                    </div>
+                    <div className="col-xs-4">
                         <div id="chart-bar-period">
                             <a className="reset" onClick={()=>clickReset("chart-bar-period")} style={cursorStyle}> reset</a>
                         </div>
