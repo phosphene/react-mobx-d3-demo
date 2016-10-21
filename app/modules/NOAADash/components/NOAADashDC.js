@@ -93,7 +93,7 @@ export default class NOAADashDC {
   buildSLChart(chart, data, dim, group, range, dimension){
     chart
       .renderArea(true)
-      .width(990)
+      .width(660)
       .height(200)
       .transitionDuration(1000)
       .margins({top: 30, right: 50, bottom: 25, left: 40})
