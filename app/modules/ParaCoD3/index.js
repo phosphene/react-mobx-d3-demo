@@ -14,7 +14,7 @@ export default class ParaCOD3 extends Component {
   }
 
   render() {
-    let themes = ['slate', 'cyborg', 'darkly', 'superhero'];
+    let themes = ['cerulean', 'default', 'united', 'flatly'];
 
     return (
       <ThemeSwitcher themePath="/themes" defaultTheme="cyborg" storeThemeKey="noaa_theme" themes={themes}>

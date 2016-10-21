@@ -18,7 +18,7 @@ class PaCoWrapper extends React.Component {
            <div>
              <ThemeChooser style={{display: 'inline'}}/> <span style={{fontSize: '1.0em'}}> This is the ThemeChooser Component</span>
             <div className="container-fluid">
-
+              <div id="parallel-coords"></div>
             </div>
            </div>
         );
