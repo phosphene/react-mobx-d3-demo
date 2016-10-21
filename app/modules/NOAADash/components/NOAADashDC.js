@@ -13,7 +13,7 @@ export default class NOAADashDC {
   render() {
     //de-structure myCharts object
     //const {heightChart, periodChart} = this.myCharts;
-    let {heightChart, periodChart, heightSLChart, periodSLChart} = this.myCharts;
+    let {heightChart, periodChart, heightSLChart, periodSLChart, windPieChart} = this.myCharts;
 
     d3.csv('data/fullyear_wv_dec_cc.csv', (error, data) => {
       //format the data
@@ -35,10 +35,29 @@ export default class NOAADashDC {
       periodSLChart = this.buildSLChart(periodSLChart, data, monthDim, pMonthGroup, heightSLChart, 'Period');
       heightChart = this.buildBarChart(heightChart, heightDim, heightGroup, numberFormat, 'ft');
       periodChart = this.buildBarChart(periodChart, periodDim, periodGroup, numberFormat, 'sec');
+      windPieChart = this.buildPieChart(windPieChart, windDim, windGroup);
       //draw the viz!
       renderAll();
 
     });
+  }
+
+  buildPieChart(chart, dim, group){
+      chart
+        .width(160) // (optional) define chart width, :default = 200
+        .height(160) // (optional) define chart height, :default = 200
+        .radius(80) // define pie radius
+        .dimension(dim) // set dimension
+        .group(group) // set group
+        return chart;
+        /* (optional) by default pie chart will use group.key as it's label
+         * but you can overwrite it with a closure
+        .label(function (d) {
+            if (windChart.hasFilter() && !windChart.hasFilter(d.key))
+                return d.key + "(0%)";
+            return d.key + "(" + Math.floor(d.value / all.value() * 100) + "%)";
+        });*/
+
   }
 
   buildBarChart(chart, dim, group, format, metric){
@@ -115,7 +134,9 @@ export default class NOAADashDC {
     const periodChart = barChart('#chart-bar-period');
     const heightSLChart = lineChart('#chart-stacked-line-height');
     const periodSLChart = lineChart('#chart-stacked-line-period');
-    const myCharts = {heightChart, periodChart, heightSLChart, periodSLChart};
+    const windPieChart = pieChart('#chart-pie-wind');
+    console.log(windPieChart);
+    const myCharts = {heightChart, periodChart, heightSLChart, periodSLChart, windPieChart};
     return myCharts;
   }
 
@@ -168,7 +189,12 @@ export default class NOAADashDC {
     const heightDim  = xwaves.dimension(pluck("wvht"));
     const periodDim  = xwaves.dimension(pluck("wvdp"));
     const monthDim  = xwaves.dimension(pluck("month"));
-    const windDim  = xwaves.dimension(pluck("wndir"));
+    const windDim  = xwaves.dimension((d)=>{
+        if (d.wndir > 0 && d.wndir <= 180)
+            return 'East';
+        else
+            return 'West';
+    });
     const xDims = {heightDim, periodDim, monthDim, windDim};
     return xDims;
   }
