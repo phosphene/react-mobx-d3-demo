@@ -1,31 +1,31 @@
-svg {
+.parallel svg {
   font: 10px sans-serif;
 }
 
-.background path {
+.parallel .background path {
   fill: none;
   stroke: #ddd;
   shape-rendering: crispEdges;
 }
 
-.foreground path {
+.parallel .foreground path {
   fill: none;
   stroke: steelblue;
 }
 
-.brush .extent {
+.parallel .brush .extent {
   fill-opacity: .3;
   stroke: #fff;
   shape-rendering: crispEdges;
 }
 
-.axis line,
-.axis path {
+.parallel .axis line,
+.parallel .axis path {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
 
-.axis text {
+.parallel .axis text {
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
 }

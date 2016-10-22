@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PaCoWrapper from './components/PaCoWrapper';
 import { ThemeSwitcher} from 'react-bootstrap-theme-switcher';
-import './css/custom.css';
+import './css/parallel.css';
 
 /* This file can serve as the index for this level of component namespace
  * it is currently being used that way as a convenient way to develop
@@ -17,7 +17,7 @@ export default class ParaCOD3 extends Component {
     let themes = ['cerulean', 'default', 'united', 'flatly'];
 
     return (
-      <ThemeSwitcher themePath="/themes" defaultTheme="cyborg" storeThemeKey="noaa_theme" themes={themes}>
+      <ThemeSwitcher themePath="/themes" defaultTheme="cerulean" storeThemeKey="paco_theme" themes={themes}>
         <PaCoWrapper/>
       </ThemeSwitcher>
     );

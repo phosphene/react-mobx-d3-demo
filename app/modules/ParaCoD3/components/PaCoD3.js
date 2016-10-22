@@ -9,13 +9,14 @@ export default class PaCoD3 {
   constructor(el, props = {}) {
     this.marginInfo = PaCoD3.buildMargins();
     this.svg = PaCoD3.buildSvg(this.marginInfo);
+
   }
 
   render() {
 
     let dimensions = {};
     const {margin, width, height} = this.marginInfo;
-
+    let svg = this.svg;
     let x = d3.scale.ordinal().rangePoints([0, width], 1);
     let y = {},
         dragging = {};
@@ -24,7 +25,7 @@ export default class PaCoD3 {
         axis = d3.svg.axis().orient("left"),
         background,
         foreground;
-    let svg = this.svg;
+
     d3.csv("data/cars.csv", (error, data) => {
       //console.log(data);
 
