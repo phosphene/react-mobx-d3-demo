@@ -93,7 +93,7 @@ export default class NOAADashDC {
   buildSLChart(chart, data, dim, group, range, dimension){
     chart
       .renderArea(true)
-      .width(660)
+      .width(990)
       .height(200)
       .transitionDuration(1000)
       .margins({top: 30, right: 50, bottom: 25, left: 40})
@@ -108,11 +108,11 @@ export default class NOAADashDC {
       .renderHorizontalGridLines(true)
       .legend(legend().x(800).y(5).itemHeight(5).gap(10))
       .brushOn(false)
-      .group(group, 'Monthly '+dimension+' Min')
+      .group(group, 'Monthly '+ dimension +' Min')
       .valueAccessor((d) =>  {
           return d.value.count ? d.value.min : 0;
       })
-      .stack(group, 'Monthly '+dimension+' Average', (d) => {
+      .stack(group, 'Monthly '+ dimension +' Average', (d) => {
           return d.value.count ? d.value.avg : 0;
       })
     // Title can be called by any stack layer.
@@ -123,7 +123,7 @@ export default class NOAADashDC {
        }
        return dateFormat(d.key) + '\n' + numberFormat(value);
        });*/
-      .stack(group, 'Monthly '+dimension+' Max', (d) => {
+      .stack(group, 'Monthly '+ dimension +' Max', (d) => {
           return d.value.count ? d.value.max : 0;
       })
    return chart;
