@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PaCoWrapper from './components/PaCoWrapper';
 import { ThemeSwitcher} from 'react-bootstrap-theme-switcher';
-//import './css/parallel.css';
+import './css/parallel.css';
 
 /* This file can serve as the index for this level of component namespace
  * it is currently being used that way as a convenient way to develop
