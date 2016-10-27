@@ -11,7 +11,7 @@ export default function Header() {
         <Nav bsStyle="tabs">
           <NavItem href="/">Home</NavItem>
           <NavItem href="thrashdash">Thrash Dash</NavItem>
-          <NavItem href="dreamdash">Dream Dash</NavItem>
+          <NavItem href="streamgraph">StreamGraph</NavItem>
           <NavItem href="noaadash">NOAA Dash</NavItem>
           <NavItem href="parallel">Para Coord</NavItem>
         </Nav>
