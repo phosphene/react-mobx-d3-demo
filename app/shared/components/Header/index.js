@@ -14,6 +14,7 @@ export default function Header() {
           <NavItem href="dreamdash">Dream Dash</NavItem>
           <NavItem href="noaadash">NOAA Dash</NavItem>
           <NavItem href="parallel">Para Coord</NavItem>
+          <NavItem href="nasdash">Market Dash</NavItem>
         </Nav>
        </Navbar>
 
