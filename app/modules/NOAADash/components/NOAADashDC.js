@@ -15,7 +15,7 @@ export default class NOAADashDC {
     //const {heightChart, periodChart} = this.myCharts;
     let {heightChart, periodChart, heightSLChart, periodSLChart, windPieChart} = this.myCharts;
 
-    d3.csv('data/fullyear_wv_dec_cc.csv', (error, data) => {
+    d3.csv('data/fullyear_wv_2004_2015.csv', (error, data) => {
       //format the data
       const buoyData = this.formatData(data);
       let wavesx = crossfilter(buoyData);
