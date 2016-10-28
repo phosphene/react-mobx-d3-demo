@@ -24,7 +24,6 @@ class NasDashWrapper extends React.Component {
       <div>
         <ThemeChooser style={{display: 'inline'}}/> <span style={{fontSize: '1.0em'}}> This is the ThemeChooser Component</span>
         <h2>Nasdaq 100 Index 1985/11/01-2012/06/29</h2>
-        <table className="table table-hover dc-data-table">
           <div className="row">
             <div id="yearly-bubble-chart" className="dc-chart">
               <strong>Yearly Performance</strong> (radius: fluctuation/index ratio, color: gain/loss)
@@ -69,15 +68,13 @@ class NasDashWrapper extends React.Component {
             <p className="muted pull-right" style={pStyle}>select a time range to zoom in</p>
           </div>
           <div className="row">
-            <div>
               <div className="dc-data-count">
                 <span className="filter-count"></span> selected out of
                 <span className="total-count"></span> records | <a href="#" onClick={()=>clickReset("all")}>Reset All</a>
               </div>
-            </div>
-        </table>
           </div>
-          <div className="clearfix"></div>
+          <table class="table table-hover dc-data-table">
+          </table>
       </div>
     );
   }
