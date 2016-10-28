@@ -14,6 +14,10 @@ class StGrWrapper extends React.Component {
     render() {
 
 
+      const clickEm = () => {
+        this.chart.transition();
+      }
+
       return (
         <div>
           <ThemeChooser style={{display: 'inline'}}/> <span style={{fontSize: '1.0em'}}> </span>
