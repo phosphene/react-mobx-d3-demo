@@ -21,7 +21,7 @@ class NasDashWrapper extends React.Component {
 
 
     return (
-      <div>
+      <div className="container">
         <ThemeChooser style={{display: 'inline'}}/> <span style={{fontSize: '1.0em'}}> This is the ThemeChooser Component</span>
         <h2>Nasdaq 100 Index 1985/11/01-2012/06/29</h2>
           <div className="row">
