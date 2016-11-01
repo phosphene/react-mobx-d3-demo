@@ -1,36 +1,19 @@
 import * as d3 from 'd3';
-import * as colorbrewer from "colorbrewer";
-import crossfilter from 'crossfilter2';
 
-import reductio from 'reductio';
-//we can call export at the top of the class declaration
+
 export default class StGrD3 {
 
   constructor(el, props = {}) {
     this.layersObj = StGrD3.buildLayers();
-
+    this.coordsObj = StGrD3.buildCoords(this.layersObj);
   }
 
   render() {
     let {layers0, layers1, m} = this.layersObj;
-    let width = 960,
-        height = 500;
-
-    let x = d3.scale.linear()
-              .domain([0, m - 1])
-              .range([0, width]);
-
-    let y = d3.scale.linear()
-              .domain([0, d3.max(layers0.concat(layers1), function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
-              .range([height, 0]);
+    let {width, height, x, y, area} = this.coordsObj;
 
     let color = d3.scale.linear()
                   .range(["#aad", "#556"]);
-
-    let area = d3.svg.area()
-                 .x(function(d) { return x(d.x); })
-                 .y0(function(d) { return y(d.y0); })
-                 .y1(function(d) { return y(d.y0 + d.y); });
 
     let svg = d3.select("#streamgraph").append("svg")
                 .attr("width", width)
@@ -57,7 +40,7 @@ export default class StGrD3 {
 
   transition () {
     let {layers0, layers1, m} = this.layersObj;
-
+    let {width, height, x, y, area} = this.coordsObj;
     d3.selectAll("path")
       .data(function() {
         var d = layers1;
@@ -70,7 +53,30 @@ export default class StGrD3 {
   }
 
 
-  // Inspired by Lee Byron's test data generator.
+  static buildCoords(layers){
+    let width = 960,
+        height = 500;
+
+    let {layers0, layers1, m} = layers;
+
+    let x = d3.scale.linear()
+              .domain([0, m - 1])
+              .range([0, width]);
+
+    let y = d3.scale.linear()
+              .domain([0, d3.max(layers0.concat(layers1), function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
+              .range([height, 0]);
+
+    let area = d3.svg.area()
+                 .x(function(d) { return x(d.x); })
+                 .y0(function(d) { return y(d.y0); })
+                 .y1(function(d) { return y(d.y0 + d.y); });
+
+    return {width, height, x, y, area};
+
+  }
+
+  //test data generator.
   static bumpLayer(n) {
 
     let bump = (a) => {
@@ -88,7 +94,5 @@ export default class StGrD3 {
     for (i = 0; i < 5; ++i) bump(a);
     return a.map(function(d, i) { return {x: i, y: Math.max(0, d)}; });
   }
-
-
   //endofile
 }
