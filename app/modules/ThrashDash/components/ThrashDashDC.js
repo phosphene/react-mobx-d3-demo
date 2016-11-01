@@ -12,7 +12,7 @@ export default class ThrashDashDC {
 
   render() {
     //de-structure myCharts object
-    const {stickFunHollowBubbleChart, stickFunQualityBubbleChart, stickFunCrowdBubbleChart,
+    let {stickFunHollowBubbleChart, stickFunQualityBubbleChart, stickFunCrowdBubbleChart,
            qualityFactorChart, hollowFactorChart , crowdFactorChart,
            funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
 
@@ -32,8 +32,12 @@ export default class ThrashDashDC {
       const {all, countPerQualityFactor, countPerHollowFactor, countPerCrowdFactor,
              countPerFunFactor, countPerYear, countPerMonth,countPerDay,
              stickGroupQuality, stickGroupCrowd, stickGroupHollow} = yGroups;
-      //dc.js Charts chained configuration
-      stickFunQualityBubbleChart
+
+   stickFunQualityBubbleChart = this.buildBubbleChart(stickFunQualityBubbleChart, stickDimQuality, stickGroupQuality, "WaveQuality");
+   //stickFunHollowBubbleChart = this.buildBubbleChart(stickFunHollowBubbleChart, stickDimHollow, stickGroupHollow);
+   //stickFunCrowdBubbleChart = this.buildBubbleChart(stickFunCrowdBubbleChart, stickDimCrowd, stickGroupCrowd);
+
+/*        stickFunQualityBubbleChart
         .width(400)
         .height(250)
         .transitionDuration(1500)
@@ -68,7 +72,7 @@ export default class ThrashDashDC {
         .yAxis().tickFormat(function (v) {
           return v + '%';
         });
-
+*/
       stickFunHollowBubbleChart
         .width(400)
         .height(250)
@@ -104,6 +108,7 @@ export default class ThrashDashDC {
         .yAxis().tickFormat(function (v) {
           return v + '%';
         });
+
 
       stickFunCrowdBubbleChart
         .width(400)
@@ -231,79 +236,6 @@ export default class ThrashDashDC {
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       //draw the viz!
       renderAll();
 
@@ -368,7 +300,46 @@ export default class ThrashDashDC {
     redrawAll();
   }
 
-
+  buildBubbleChart(chart, dim, group, metric){
+        console.log(group.top(2));
+      chart
+        .width(400)
+        .height(250)
+        .transitionDuration(1500)
+        .margins({top:10, right:50, bottom:30, left:40})
+        .dimension(dim)
+        .group(group)
+        .ordinalColors(colorbrewer.Spectral[7])
+        .colorAccessor((p) => {
+            console.log(p);
+          return p.value.board;
+        })
+        .keyAccessor((p) => {
+          return p.value.avgWaveQuality;
+        })
+        .valueAccessor((p) => {
+          return p.value.avgFunFactor;
+        })
+        .radiusValueAccessor((p) => {
+          return p.value.count;
+        })
+        .maxBubbleRelativeSize(0.2)
+        .x(d3.scale.linear().domain([0, 5]))
+        .y(d3.scale.linear().domain([0, 5]))
+        .r(d3.scale.linear().domain([0, 100]))
+        .elasticY(false)
+        .elasticX(false)
+        .yAxisPadding(100)
+        .xAxisPadding(500)
+        .renderHorizontalGridLines(true)
+        .renderVerticalGridLines(true)
+        .xAxisLabel('Crowd_Foo')
+        .yAxisLabel('Fun')
+        .yAxis().tickFormat(function (v) {
+          return v + '%';
+        });
+    return chart;
+  }
 
   formatData(data){
 
