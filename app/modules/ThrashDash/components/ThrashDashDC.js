@@ -325,7 +325,7 @@ export default class ThrashDashDC {
           return p.value.fun.avg;
         })
         .radiusValueAccessor((p) => {
-          return p.value.count;
+          return p.value.fun.count;
         })
         .maxBubbleRelativeSize(0.2)
         .x(d3.scale.linear().domain([0, 5]))
