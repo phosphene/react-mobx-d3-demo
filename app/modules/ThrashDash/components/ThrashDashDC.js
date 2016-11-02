@@ -2,6 +2,7 @@ import * as d3 from 'd3';
 import * as dc from 'dc'
 import {crossfilter, units, geoChoroplethChart, bubbleChart, renderAll, redrawAll, filterAll, pieChart, barChart, dataCount, dataTable, pluck} from 'dc';
 import * as colorbrewer from "colorbrewer";
+import reductio from "reductio";
 //we can call export at the top of the class declaration
 export default class ThrashDashDC {
 
@@ -301,7 +302,7 @@ export default class ThrashDashDC {
   }
 
   buildBubbleChart(chart, dim, group, metric){
-        console.log(group.top(2));
+        //console.log(group.top(2));
       chart
         .width(400)
         .height(250)
@@ -406,6 +407,11 @@ export default class ThrashDashDC {
     const countPerMonth = monthDim.group().reduceCount();
     const countPerDay = dayDim.group().reduceCount();
     //map reduce functions
+    let myStickGroupQuality = stickDimQuality.group();
+    let qualityReducer = reductio();
+    qualityReducer.count(true).sum((d)=>{return d.waveQuality;}).avg(true);
+    qualityReducer(myStickGroupQuality);
+    console.log(myStickGroupQuality.top(2));
     const stickGroupQuality = this.buildStickGQ(stickDimQuality);
     const stickGroupCrowd = this.buildStickGC(stickDimCrowd);
     const stickGroupHollow = this.buildStickGH(stickDimHollow);
