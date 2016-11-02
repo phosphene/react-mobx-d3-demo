@@ -83,6 +83,8 @@ export default class ThrashDashDC {
         .group(stickGroupHollow)
         .ordinalColors(colorbrewer.Spectral[7])
         .colorAccessor((p) => {
+            console.log("old");
+            console.log(p);
           return p.value.board;
         })
         .keyAccessor((p) => {
@@ -312,14 +314,15 @@ export default class ThrashDashDC {
         .group(group)
         .ordinalColors(colorbrewer.Spectral[7])
         .colorAccessor((p) => {
+            console.log("new");
             console.log(p);
-          return p.value.board;
+          return p.key;
         })
         .keyAccessor((p) => {
-          return p.value.avgWaveQuality;
+          return p.value.quality.avg;
         })
         .valueAccessor((p) => {
-          return p.value.avgFunFactor;
+          return p.value.fun.avg;
         })
         .radiusValueAccessor((p) => {
           return p.value.count;
@@ -407,12 +410,15 @@ export default class ThrashDashDC {
     const countPerMonth = monthDim.group().reduceCount();
     const countPerDay = dayDim.group().reduceCount();
     //map reduce functions
-    let myStickGroupQuality = stickDimQuality.group();
-    let qualityReducer = reductio();
-    qualityReducer.count(true).sum((d)=>{return d.waveQuality;}).avg(true);
-    qualityReducer(myStickGroupQuality);
-    console.log(myStickGroupQuality.top(2));
-    const stickGroupQuality = this.buildStickGQ(stickDimQuality);
+    let stickGroupQuality = stickDimQuality.group();
+    let bReducer = reductio();
+    bReducer.value("quality").count(true).sum((d)=>{return d.waveQuality;}).avg(true);
+    bReducer.value("fun").count(true).sum((d)=>{return d.funFactor}).avg(true);
+    bReducer.value("crowd").count(true).sum((d)=>{return d.crowdedness}).avg(true);
+    bReducer.value("hollow").count(true).sum((d)=>{return d.hollowness}).avg(true);
+    bReducer(stickGroupQuality);
+    console.log(stickGroupQuality.top(2));
+    //const stickGroupQuality = this.buildStickGQ(stickDimQuality);
     const stickGroupCrowd = this.buildStickGC(stickDimCrowd);
     const stickGroupHollow = this.buildStickGH(stickDimHollow);
 
