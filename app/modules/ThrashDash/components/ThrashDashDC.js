@@ -14,8 +14,8 @@ export default class ThrashDashDC {
   render() {
     //de-structure myCharts object
     let {SFHBubbleChart, SFQBubbleChart, SFCBubbleChart,
-           QFBarChart, HFBarChart, crowdFactorChart,
-           funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
+           QFBarChart, HFBarChart, CFBarChart,
+           FFBarChart, yearChart, monthChart, dayChart} = this.myCharts;
 
     d3.json('data/thrashtown.json', (error, data) => {
       //format the data
@@ -39,57 +39,8 @@ export default class ThrashDashDC {
    SFCBubbleChart = this.buildBubbleChart(SFCBubbleChart, stickDimCrowd, stickGroup, "crowd", "fun");
    QFBarChart = this.buildBarChart(QFBarChart, qualityFactorDim, countPerQualityFactor,"metric", "quality", "sessions");
    HFBarChart = this.buildBarChart(HFBarChart, hollowFactorDim, countPerHollowFactor,"metric", "hollow", "sessions");
-/*      qualityFactorChart
-        .width(300)
-        .height(180)
-        .dimension(qualityFactorDim)
-        .group(countPerQualityFactor)
-        .x(d3.scale.linear().domain([0,5.2]))
-        .elasticY(true)
-        .centerBar(true)
-        .barPadding(5)
-        .xAxisLabel('Quality Factor')
-        .yAxisLabel('Sessions')
-      qualityFactorChart.xAxis().tickValues([0,1,2,3,4,5]);
-
-      hollowFactorChart
-        .width(300)
-        .height(180)
-        .dimension(hollowFactorDim)
-        .group(countPerHollowFactor)
-        .x(d3.scale.linear().domain([0,5.2]))
-        .elasticY(true)
-        .centerBar(true)
-        .barPadding(5)
-        .xAxisLabel('Hollow Factor')
-        .yAxisLabel('Sessions')
-      hollowFactorChart.xAxis().tickValues([0,1,2,3,4,5]);*/
-
-      crowdFactorChart
-        .width(300)
-        .height(180)
-        .dimension(crowdFactorDim)
-        .group(countPerCrowdFactor)
-        .x(d3.scale.linear().domain([0,5.2]))
-        .elasticY(true)
-        .centerBar(true)
-        .barPadding(5)
-        .xAxisLabel('Crowd Factor')
-        .yAxisLabel('Sessions')
-      crowdFactorChart.xAxis().tickValues([0,1,2,3,4,5]);
-
-      funFactorChart
-        .width(300)
-        .height(180)
-        .dimension(funFactorDim)
-        .group(countPerFunFactor)
-        .x(d3.scale.linear().domain([0,5.2]))
-        .elasticY(true)
-        .centerBar(true)
-        .barPadding(5)
-        .xAxisLabel('Fun Factor')
-        .yAxisLabel('Sessions')
-      funFactorChart.xAxis().tickValues([0, 1, 2, 3, 4, 5]);
+   CFBarChart = this.buildBarChart(CFBarChart, crowdFactorDim, countPerCrowdFactor,"metric", "crowd", "sessions");
+   FFBarChart = this.buildBarChart(FFBarChart, funFactorDim, countPerFunFactor,"metric", "fun", "sessions");
 
       yearChart
         .width(150)
@@ -141,15 +92,15 @@ export default class ThrashDashDC {
     const SFCBubbleChart = bubbleChart('#chart-bubble-stick-fun-crowd');
     const QFBarChart = barChart('#chart-bar-quality-factor');
     const HFBarChart = barChart('#chart-bar-hollow-factor');
-    const crowdFactorChart = barChart('#chart-bar-crowd-factor');
-    const funFactorChart = barChart('#chart-bar-fun-factor');
+    const CFBarChart = barChart('#chart-bar-crowd-factor');
+    const FFBarChart = barChart('#chart-bar-fun-factor');
     const yearChart = pieChart('#chart-ring-year');
     const monthChart = pieChart('#chart-ring-month');
     const dayChart = pieChart('#chart-ring-day');
 
     const myCharts = {SFHBubbleChart, SFQBubbleChart, SFCBubbleChart,
-                      QFBarChart, HFBarChart, crowdFactorChart,
-                      funFactorChart, yearChart, monthChart, dayChart};
+                      QFBarChart, HFBarChart, CFBarChart,
+                      FFBarChart, yearChart, monthChart, dayChart};
 
 
     return myCharts;
@@ -159,8 +110,8 @@ export default class ThrashDashDC {
   resetChart(chartName) {
 
     let {SFHBubbleChart, SFQBubbleChart, SFCBubbleChart,
-         QFBarChart, HFBarChart, crowdFactorChart,
-         funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
+         QFBarChart, HFBarChart, CFBarChart,
+         FFBarChart, yearChart, monthChart, dayChart} = this.myCharts;
 
     switch (chartName) {
       case "chart-ring-year":
@@ -173,10 +124,10 @@ export default class ThrashDashDC {
         dayChart.filterAll();
         break;
       case "chart-bar-fun-factor":
-        funFactorChart.filterAll();
+        FFBarChart.filterAll();
         break;
       case "chart-bar-crowd-factor":
-        crowdFactorChart.filterAll();
+        CFBarChart.filterAll();
         break;
       case "chart-bar-hollow-factor":
         HFBarChart.filterAll();
@@ -205,6 +156,8 @@ buildBarChart(chart, dim, group, metric, x, y){
       .barPadding(5)
       .xAxisLabel(x)
       .yAxisLabel(y)
+
+    chart.xAxis().tickValues([0, 1, 2, 3, 4, 5]);
     return chart;
   }
 
