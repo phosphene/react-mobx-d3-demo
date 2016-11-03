@@ -13,7 +13,7 @@ export default class ThrashDashDC {
 
   render() {
     //de-structure myCharts object
-    let {stickFunHollowBubbleChart, stickFunQualityBubbleChart, stickFunCrowdBubbleChart,
+    let {SFHBubbleChart, SFQBubbleChart, SFCBubbleChart,
            qualityFactorChart, hollowFactorChart , crowdFactorChart,
            funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
 
@@ -32,122 +32,11 @@ export default class ThrashDashDC {
       //de-structure they yGroups object
       const {all, countPerQualityFactor, countPerHollowFactor, countPerCrowdFactor,
              countPerFunFactor, countPerYear, countPerMonth,countPerDay,
-             stickGroupQuality, stickGroupCrowd, stickGroupHollow} = yGroups;
+             stickGroup} = yGroups;
 
-   stickFunQualityBubbleChart = this.buildBubbleChart(stickFunQualityBubbleChart, stickDimQuality, stickGroupQuality, "WaveQuality");
-   //stickFunHollowBubbleChart = this.buildBubbleChart(stickFunHollowBubbleChart, stickDimHollow, stickGroupHollow);
-   //stickFunCrowdBubbleChart = this.buildBubbleChart(stickFunCrowdBubbleChart, stickDimCrowd, stickGroupCrowd);
-
-/*        stickFunQualityBubbleChart
-        .width(400)
-        .height(250)
-        .transitionDuration(1500)
-        .margins({top:10, right:50, bottom:30, left:40})
-        .dimension(stickDimQuality)
-        .group(stickGroupQuality)
-        .ordinalColors(colorbrewer.Spectral[7])
-        .colorAccessor((p) => {
-          return p.value.board;
-        })
-        .keyAccessor((p) => {
-          return p.value.avgWaveQuality;
-        })
-        .valueAccessor((p) => {
-          return p.value.avgFunFactor;
-        })
-        .radiusValueAccessor((p) => {
-          return p.value.count;
-        })
-        .maxBubbleRelativeSize(0.2)
-        .x(d3.scale.linear().domain([0, 5]))
-        .y(d3.scale.linear().domain([0, 5]))
-        .r(d3.scale.linear().domain([0, 100]))
-        .elasticY(false)
-        .elasticX(false)
-        .yAxisPadding(100)
-        .xAxisPadding(500)
-        .renderHorizontalGridLines(true)
-        .renderVerticalGridLines(true)
-        .xAxisLabel('Quality')
-        .yAxisLabel('Fun')
-        .yAxis().tickFormat(function (v) {
-          return v + '%';
-        });
-*/
-      stickFunHollowBubbleChart
-        .width(400)
-        .height(250)
-        .transitionDuration(1500)
-        .margins({top:10, right:50, bottom:30, left:40})
-        .dimension(stickDimHollow)
-        .group(stickGroupHollow)
-        .ordinalColors(colorbrewer.Spectral[7])
-        .colorAccessor((p) => {
-            console.log("old");
-            console.log(p);
-          return p.value.board;
-        })
-        .keyAccessor((p) => {
-          return p.value.avgHollowness;
-        })
-        .valueAccessor((p) => {
-          return p.value.avgFunFactor;
-        })
-        .radiusValueAccessor((p) => {
-          return p.value.count;
-        })
-        .maxBubbleRelativeSize(0.2)
-        .x(d3.scale.linear().domain([0, 5]))
-        .y(d3.scale.linear().domain([0, 5]))
-        .r(d3.scale.linear().domain([0, 100]))
-        .elasticY(false)
-        .elasticX(false)
-        .yAxisPadding(100)
-        .xAxisPadding(500)
-        .renderHorizontalGridLines(true)
-        .renderVerticalGridLines(true)
-        .xAxisLabel('Hollow')
-        .yAxisLabel('Fun')
-        .yAxis().tickFormat(function (v) {
-          return v + '%';
-        });
-
-
-      stickFunCrowdBubbleChart
-        .width(400)
-        .height(250)
-        .transitionDuration(1500)
-        .margins({top:10, right:50, bottom:30, left:40})
-        .dimension(stickDimCrowd)
-        .group(stickGroupCrowd)
-        .ordinalColors(colorbrewer.Spectral[7])
-        .colorAccessor((p) => {
-          return p.value.board;
-        })
-        .keyAccessor((p) => {
-          return p.value.avgCrowdedness;
-        })
-        .valueAccessor((p) => {
-          return p.value.avgFunFactor;
-        })
-        .radiusValueAccessor((p) => {
-          return p.value.count;
-        })
-        .maxBubbleRelativeSize(0.2)
-        .x(d3.scale.linear().domain([0, 5]))
-        .y(d3.scale.linear().domain([0, 5]))
-        .r(d3.scale.linear().domain([0, 100]))
-        .elasticY(false)
-        .elasticX(false)
-        .yAxisPadding(100)
-        .xAxisPadding(500)
-        .renderHorizontalGridLines(true)
-        .renderVerticalGridLines(true)
-        .xAxisLabel('Crowd')
-        .yAxisLabel('Fun')
-        .yAxis().tickFormat(function (v) {
-          return v + '%';
-        });
+   SFQBubbleChart = this.buildBubbleChart(SFQBubbleChart, stickDimQuality, stickGroup, "quality", "fun");
+   SFHBubbleChart = this.buildBubbleChart(SFHBubbleChart, stickDimHollow, stickGroup, "hollow", "fun");
+   SFCBubbleChart = this.buildBubbleChart(SFCBubbleChart, stickDimCrowd, stickGroup, "crowd", "fun");
 
 
       qualityFactorChart
@@ -247,9 +136,9 @@ export default class ThrashDashDC {
 
 
   static initCharts() {
-    const stickFunHollowBubbleChart = bubbleChart('#chart-bubble-stick-fun-hollow');
-    const stickFunQualityBubbleChart = bubbleChart('#chart-bubble-stick-fun-quality');
-    const stickFunCrowdBubbleChart = bubbleChart('#chart-bubble-stick-fun-crowd');
+    const SFHBubbleChart = bubbleChart('#chart-bubble-stick-fun-hollow');
+    const SFQBubbleChart = bubbleChart('#chart-bubble-stick-fun-quality');
+    const SFCBubbleChart = bubbleChart('#chart-bubble-stick-fun-crowd');
     const qualityFactorChart = barChart('#chart-bar-quality-factor');
     const hollowFactorChart = barChart('#chart-bar-hollow-factor');
     const crowdFactorChart = barChart('#chart-bar-crowd-factor');
@@ -258,7 +147,7 @@ export default class ThrashDashDC {
     const monthChart = pieChart('#chart-ring-month');
     const dayChart = pieChart('#chart-ring-day');
 
-    const myCharts = {stickFunHollowBubbleChart, stickFunQualityBubbleChart, stickFunCrowdBubbleChart,
+    const myCharts = {SFHBubbleChart, SFQBubbleChart, SFCBubbleChart,
                       qualityFactorChart, hollowFactorChart , crowdFactorChart,
                       funFactorChart, yearChart, monthChart, dayChart};
 
@@ -269,7 +158,7 @@ export default class ThrashDashDC {
 
   resetChart(chartName) {
 
-    let {stickFunHollowBubbleChart, stickFunQualityBubbleChart, stickFunCrowdBubbleChart,
+    let {SFHBubbleChart, SFQBubbleChart, SFCBubbleChart,
          qualityFactorChart, hollowFactorChart , crowdFactorChart,
          funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
 
@@ -303,7 +192,7 @@ export default class ThrashDashDC {
     redrawAll();
   }
 
-  buildBubbleChart(chart, dim, group, metric){
+  buildBubbleChart(chart, dim, group, x, y){
         //console.log(group.top(2));
       chart
         .width(400)
@@ -314,15 +203,14 @@ export default class ThrashDashDC {
         .group(group)
         .ordinalColors(colorbrewer.Spectral[7])
         .colorAccessor((p) => {
-            console.log("new");
-            console.log(p);
           return p.key;
         })
         .keyAccessor((p) => {
-          return p.value.quality.avg;
+          //return p.value.quality.avg;
+          return p.value[x].avg;
         })
         .valueAccessor((p) => {
-          return p.value.fun.avg;
+          return p.value[y].avg;
         })
         .radiusValueAccessor((p) => {
           return p.value.fun.count;
@@ -337,8 +225,8 @@ export default class ThrashDashDC {
         .xAxisPadding(500)
         .renderHorizontalGridLines(true)
         .renderVerticalGridLines(true)
-        .xAxisLabel('Crowd_Foo')
-        .yAxisLabel('Fun')
+        .xAxisLabel(x)
+        .yAxisLabel(y)
         .yAxis().tickFormat(function (v) {
           return v + '%';
         });
@@ -410,129 +298,22 @@ export default class ThrashDashDC {
     const countPerMonth = monthDim.group().reduceCount();
     const countPerDay = dayDim.group().reduceCount();
     //map reduce functions
-    let stickGroupQuality = stickDimQuality.group();
+    let stickGroup = stickDimQuality.group();
     let bReducer = reductio();
     bReducer.value("quality").count(true).sum((d)=>{return d.waveQuality;}).avg(true);
     bReducer.value("fun").count(true).sum((d)=>{return d.funFactor}).avg(true);
     bReducer.value("crowd").count(true).sum((d)=>{return d.crowdedness}).avg(true);
     bReducer.value("hollow").count(true).sum((d)=>{return d.hollowness}).avg(true);
-    bReducer(stickGroupQuality);
-    console.log(stickGroupQuality.top(2));
-    //const stickGroupQuality = this.buildStickGQ(stickDimQuality);
-    const stickGroupCrowd = this.buildStickGC(stickDimCrowd);
-    const stickGroupHollow = this.buildStickGH(stickDimHollow);
+    bReducer(stickGroup);
 
     const yGroups = {all, countPerQualityFactor, countPerHollowFactor, countPerCrowdFactor,
                      countPerFunFactor, countPerYear, countPerMonth, countPerDay,
-                     stickGroupQuality, stickGroupCrowd, stickGroupHollow};
+                     stickGroup};
 
     return yGroups;
 
   }
 
-
-  //map reduce
-  buildStickGH(stickDimHollow){
-    const stickGH = stickDimHollow.group().reduce(
-      (p, v) => {
-                    ++p.count;
-        p.board = v.board.name;
-        p.hollowness += v.hollowness;
-        p.funFactor += v.funFactor;
-        p.avgHollowness = p.hollowness / p.count;
-        p.avgFunFactor = p.funFactor / p.count;
-        return p;
-      },
-      (p, v) => {
-        p.hollowness -= v.hollowness;
-        p.funFactor -= v.funFactor;
-        p.avgHollowness = p.count ? v.hollowness / p.count : 0;
-        p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
-                        --p.count;
-        return p
-      },
-      () => {
-        return {
-          board:0,
-          count:0,
-          hollowness:0,
-          funFactor:0,
-          avgFunFactor:0,
-          avgCrowdedness:0,
-          avgFunToCrowd:0,
-        };
-      }
-    );
-    return stickGH;
-  }
-
-
-  buildStickGQ(stickDimQuality){
-    const stickGroupQuality = stickDimQuality.group().reduce(
-      (p, v) => {
-                    ++p.count;
-        p.board = v.board.name;
-        p.funFactor += v.funFactor;
-        p.waveQuality += v.waveQuality;
-        p.avgFunFactor = p.funFactor / p.count;
-        p.avgWaveQuality = p.waveQuality / p.count;
-        return p;
-      },
-      (p, v) => {
-        p.funFactor -= v.funFactor;
-        p.waveQuality -= v.waveQuality;
-        p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
-        p.avgWaveQuality = p.count ? p.waveQuality / p.count : 0;
-                          --p.count;
-        return p
-      },
-      () => {
-        return {
-          board:0,
-          count:0,
-          waveQuality:0,
-          funFactor:0,
-          avgFunFactor:0,
-          avgWaveQuality:0,
-        };
-      }
-    );
-    return stickGroupQuality;
-  }
-
-  buildStickGC(stickDimCrowd){
-    const stickGroupCrowd = stickDimCrowd.group().reduce(
-      (p, v) => {
-                    ++p.count;
-        p.board = v.board.name;
-        p.crowdedness += v.crowdedness;
-        p.funFactor += v.funFactor;
-        p.avgCrowdedness = p.crowdedness / p.count;
-        p.avgFunFactor = p.funFactor / p.count;
-        return p;
-      },
-      (p, v) => {
-        p.crowdedness -= v.crowdedness;
-        p.funFactor -= v.funFactor;
-        p.avgCrowdedness = p.count ? v.crowdedness / p.count : 0;
-        p.avgFunFactor = p.count ? p.funFactor / p.count : 0;
-                        --p.count;
-        return p
-      },
-      () => {
-        return {
-          board:0,
-          count:0,
-          crowdedness:0,
-          funFactor:0,
-          avgFunFactor:0,
-          avgCrowdedness:0,
-          avgFunToCrowd:0,
-        };
-      }
-    );
-    return stickGroupCrowd;
-  }
 
   //end of class
 }
