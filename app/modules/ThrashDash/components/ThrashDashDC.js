@@ -14,7 +14,7 @@ export default class ThrashDashDC {
   render() {
     //de-structure myCharts object
     let {SFHBubbleChart, SFQBubbleChart, SFCBubbleChart,
-           qualityFactorChart, hollowFactorChart , crowdFactorChart,
+           QFBarChart, HFBarChart, crowdFactorChart,
            funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
 
     d3.json('data/thrashtown.json', (error, data) => {
@@ -37,9 +37,9 @@ export default class ThrashDashDC {
    SFQBubbleChart = this.buildBubbleChart(SFQBubbleChart, stickDimQuality, stickGroup, "quality", "fun");
    SFHBubbleChart = this.buildBubbleChart(SFHBubbleChart, stickDimHollow, stickGroup, "hollow", "fun");
    SFCBubbleChart = this.buildBubbleChart(SFCBubbleChart, stickDimCrowd, stickGroup, "crowd", "fun");
-
-
-      qualityFactorChart
+   QFBarChart = this.buildBarChart(QFBarChart, qualityFactorDim, countPerQualityFactor,"metric", "quality", "sessions");
+   HFBarChart = this.buildBarChart(HFBarChart, hollowFactorDim, countPerHollowFactor,"metric", "hollow", "sessions");
+/*      qualityFactorChart
         .width(300)
         .height(180)
         .dimension(qualityFactorDim)
@@ -63,7 +63,7 @@ export default class ThrashDashDC {
         .barPadding(5)
         .xAxisLabel('Hollow Factor')
         .yAxisLabel('Sessions')
-      hollowFactorChart.xAxis().tickValues([0,1,2,3,4,5]);
+      hollowFactorChart.xAxis().tickValues([0,1,2,3,4,5]);*/
 
       crowdFactorChart
         .width(300)
@@ -139,8 +139,8 @@ export default class ThrashDashDC {
     const SFHBubbleChart = bubbleChart('#chart-bubble-stick-fun-hollow');
     const SFQBubbleChart = bubbleChart('#chart-bubble-stick-fun-quality');
     const SFCBubbleChart = bubbleChart('#chart-bubble-stick-fun-crowd');
-    const qualityFactorChart = barChart('#chart-bar-quality-factor');
-    const hollowFactorChart = barChart('#chart-bar-hollow-factor');
+    const QFBarChart = barChart('#chart-bar-quality-factor');
+    const HFBarChart = barChart('#chart-bar-hollow-factor');
     const crowdFactorChart = barChart('#chart-bar-crowd-factor');
     const funFactorChart = barChart('#chart-bar-fun-factor');
     const yearChart = pieChart('#chart-ring-year');
@@ -148,7 +148,7 @@ export default class ThrashDashDC {
     const dayChart = pieChart('#chart-ring-day');
 
     const myCharts = {SFHBubbleChart, SFQBubbleChart, SFCBubbleChart,
-                      qualityFactorChart, hollowFactorChart , crowdFactorChart,
+                      QFBarChart, HFBarChart, crowdFactorChart,
                       funFactorChart, yearChart, monthChart, dayChart};
 
 
@@ -159,7 +159,7 @@ export default class ThrashDashDC {
   resetChart(chartName) {
 
     let {SFHBubbleChart, SFQBubbleChart, SFCBubbleChart,
-         qualityFactorChart, hollowFactorChart , crowdFactorChart,
+         QFBarChart, HFBarChart, crowdFactorChart,
          funFactorChart, yearChart, monthChart, dayChart} = this.myCharts;
 
     switch (chartName) {
@@ -179,10 +179,10 @@ export default class ThrashDashDC {
         crowdFactorChart.filterAll();
         break;
       case "chart-bar-hollow-factor":
-        hollowFactorChart.filterAll();
+        HFBarChart.filterAll();
         break;
       case "chart-bar-quality-factor":
-        qualityFactorChart.filterAll();
+        QFBarChart.filterAll();
         break;
       default:
         //Statements executed when none of the values match the value of the expression
@@ -191,6 +191,23 @@ export default class ThrashDashDC {
 
     redrawAll();
   }
+
+buildBarChart(chart, dim, group, metric, x, y){
+    //dc.barChart("#period-chart")
+    chart
+      .width(300)
+      .height(180)
+      .dimension(dim)
+      .group(group)
+      .x(d3.scale.linear().domain([0, 5.2]))
+      .elasticY(true)
+      .centerBar(true)
+      .barPadding(5)
+      .xAxisLabel(x)
+      .yAxisLabel(y)
+    return chart;
+  }
+
 
   buildBubbleChart(chart, dim, group, x, y){
         //console.log(group.top(2));
