@@ -37,10 +37,10 @@ export default class ThrashDashDC {
    SFQBubbleChart = this.buildBubbleChart(SFQBubbleChart, stickDimQuality, stickGroup, "quality", "fun");
    SFHBubbleChart = this.buildBubbleChart(SFHBubbleChart, stickDimHollow, stickGroup, "hollow", "fun");
    SFCBubbleChart = this.buildBubbleChart(SFCBubbleChart, stickDimCrowd, stickGroup, "crowd", "fun");
-   QFBarChart = this.buildBarChart(QFBarChart, qualityFactorDim, countPerQualityFactor,"metric", "quality", "sessions");
-   HFBarChart = this.buildBarChart(HFBarChart, hollowFactorDim, countPerHollowFactor,"metric", "hollow", "sessions");
-   CFBarChart = this.buildBarChart(CFBarChart, crowdFactorDim, countPerCrowdFactor,"metric", "crowd", "sessions");
-   FFBarChart = this.buildBarChart(FFBarChart, funFactorDim, countPerFunFactor,"metric", "fun", "sessions");
+   QFBarChart = this.buildBarChart(QFBarChart, qualityFactorDim, countPerQualityFactor, "quality", "sessions");
+   HFBarChart = this.buildBarChart(HFBarChart, hollowFactorDim, countPerHollowFactor, "hollow", "sessions");
+   CFBarChart = this.buildBarChart(CFBarChart, crowdFactorDim, countPerCrowdFactor, "crowd", "sessions");
+   FFBarChart = this.buildBarChart(FFBarChart, funFactorDim, countPerFunFactor, "fun", "sessions");
 
       yearChart
         .width(150)
@@ -143,7 +143,7 @@ export default class ThrashDashDC {
     redrawAll();
   }
 
-buildBarChart(chart, dim, group, metric, x, y){
+buildBarChart(chart, dim, group, x, y){
     //dc.barChart("#period-chart")
     chart
       .width(300)
