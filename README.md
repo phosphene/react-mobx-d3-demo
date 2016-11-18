@@ -1,8 +1,7 @@
 ### Features
-- ES6 on client and server;
-- CSSNext and modules;
-- Hot module reloading;
-- Build server bundle for production;
+- ES6 on client and server
+- Hot module reloading
+- Build server bundle for production
 - Karma webpack jasmine testing with enzyme
 - Mobx for state management
 - React
