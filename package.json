@@ -4,8 +4,9 @@
   "description": "React Fullstack D3 Demo",
   "main": "index.js",
   "scripts": {
+    "start": "NODE_ENV=development nodemon server/index.js -w server/",
     "start:dev": "NODE_ENV=development nodemon server/index.js -w server/",
-    "start": "NODE_ENV=production node server/server.bundle.js",
+    "start:prod": "NODE_ENV=production node server/server.bundle.js",
     "build:all": "npm run build:client && npm run build:server",
     "build:client": "NODE_ENV=production webpack --config webpack.prod.js",
     "build:server": "NODE_ENV=production webpack --config webpack.server.js",
