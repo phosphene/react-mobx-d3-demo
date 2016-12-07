@@ -98,6 +98,7 @@
     "mobx": "^2.4.0",
     "mobx-react": "^3.5.1",
     "mobx-react-devtools": "^4.2.3",
+    "mobx-react-form": "^1.16.7",
     "postcss": "^5.1.0",
     "postcss-cssnext": "^2.7.0",
     "postcss-focus": "^1.0.0",
